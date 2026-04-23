@@ -1,38 +1,60 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4. Juli – Unabhängigkeitstag der USA</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+@@ -8,471 +9,756 @@
 <style>
 
 :root {
---hintergrund: #F7F4EE;
---flaeche:     #EEEAE0;
---rahmen:      #D8D2C4;
---text:        #1A1814;
---grau:        #7A7060;
---blau:        #2D5A8E;
---rot:         #8E3A2D;
+  --hintergrund: #F7F4EE;
+  --flaeche:     #EEEAE0;
+  --rahmen:      #D8D2C4;
+  --text:        #1A1814;
+  --grau:        #7A7060;
+  --blau:        #2D5A8E;
+  --rot:         #8E3A2D;
+–hintergrund: #F7F4EE;
+–flaeche:     #EEEAE0;
+–rahmen:      #D8D2C4;
+–text:        #1A1814;
+–grau:        #7A7060;
+–blau:        #2D5A8E;
+–rot:         #8E3A2D;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-font-family: 'DM Sans', sans-serif;
-background: var(--hintergrund);
-color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  background: var(--hintergrund);
+  color: var(--text);
+  overflow-x: hidden;
+font-family: ‘DM Sans’, sans-serif;
+background: var(–hintergrund);
+color: var(–text);
 overflow-x: hidden;
 }
 
 .navigation {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(247,244,238,0.93);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rahmen);
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 position: fixed;
 top: 0; left: 0; right: 0;
 z-index: 100;
 background: rgba(247,244,238,0.93);
 backdrop-filter: blur(14px);
-border-bottom: 1px solid var(--rahmen);
+border-bottom: 1px solid var(–rahmen);
 height: 72px;
 display: flex;
 flex-direction: column;
@@ -42,16 +64,28 @@ gap: 4px;
 }
 
 .logo {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 1rem;
 font-weight: 600;
 letter-spacing: 5px;
 text-transform: uppercase;
-color: var(--text);
+color: var(–text);
 text-decoration: none;
 }
 
 .nav-links {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
 display: flex;
 list-style: none;
 flex-wrap: wrap;
@@ -60,10 +94,19 @@ gap: 0;
 }
 
 .nav-links a {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--grau);
+  text-decoration: none;
+  padding: 0.25rem 0.85rem;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  display: block;
 font-size: 0.68rem;
 letter-spacing: 2px;
 text-transform: uppercase;
-color: var(--grau);
+color: var(–grau);
 text-decoration: none;
 padding: 0.25rem 0.85rem;
 border-bottom: 1.5px solid transparent;
@@ -72,11 +115,17 @@ display: block;
 }
 
 .nav-links a:hover {
-color: var(--blau);
-border-bottom-color: var(--blau);
+  color: var(--blau);
+  border-bottom-color: var(--blau);
+color: var(–blau);
+border-bottom-color: var(–blau);
 }
 
 .seite {
+  display: none;
+  min-height: 100vh;
+  padding-top: 72px;
+  animation: einblenden 0.5s ease both;
 display: none;
 min-height: 100vh;
 padding-top: 72px;
@@ -88,11 +137,20 @@ animation: einblenden 0.5s ease both;
 .seite:target ~ .seite:first-of-type { display: none; }
 
 @keyframes einblenden {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 from { opacity: 0; transform: translateY(14px); }
 to   { opacity: 1; transform: translateY(0); }
 }
 
 .startbereich {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem 5rem;
 min-height: calc(100vh - 72px);
 display: flex;
 flex-direction: column;
@@ -103,45 +161,73 @@ padding: 4rem 2rem 5rem;
 }
 
 .kleiner-text {
+  font-size: 0.68rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--blau);
+  margin-bottom: 1.8rem;
 font-size: 0.68rem;
 letter-spacing: 5px;
 text-transform: uppercase;
-color: var(--blau);
+color: var(–blau);
 margin-bottom: 1.8rem;
 }
 
 .haupttitel {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: clamp(3rem, 8vw, 6.5rem);
 font-weight: 300;
 line-height: 1.05;
-color: var(--text);
+color: var(–text);
 margin-bottom: 0.3rem;
 }
 
 .haupttitel em {
+  font-style: italic;
+  color: var(--blau);
 font-style: italic;
-color: var(--blau);
+color: var(–blau);
 }
 
 .untertitel {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-style: italic;
+  color: var(--grau);
+  margin-bottom: 2rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: clamp(1.2rem, 3vw, 2rem);
 font-style: italic;
-color: var(--grau);
+color: var(–grau);
 margin-bottom: 2rem;
 }
 
 .einleitung {
+  max-width: 520px;
+  font-size: 0.97rem;
+  color: var(--grau);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
 max-width: 520px;
 font-size: 0.97rem;
-color: var(--grau);
+color: var(–grau);
 line-height: 1.85;
 font-weight: 300;
 margin-bottom: 2.5rem;
 }
 
 .info-punkte {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
 display: flex;
 flex-wrap: wrap;
 gap: 0.7rem;
@@ -149,32 +235,53 @@ justify-content: center;
 }
 
 .info-punkt {
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blau);
+  border: 1px solid rgba(45,90,142,0.3);
+  padding: 0.35rem 1rem;
+  background: rgba(45,90,142,0.05);
 font-size: 0.68rem;
 letter-spacing: 1.5px;
 text-transform: uppercase;
-color: var(--blau);
+color: var(–blau);
 border: 1px solid rgba(45,90,142,0.3);
 padding: 0.35rem 1rem;
 background: rgba(45,90,142,0.05);
 }
 
 .karten-bereich {
+  padding: 4rem 2rem 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
 padding: 4rem 2rem 6rem;
 max-width: 1100px;
 margin: 0 auto;
 }
 
 .bereich-label {
+  font-size: 0.68rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--blau);
+  text-align: center;
+  margin-bottom: 0.6rem;
 font-size: 0.68rem;
 letter-spacing: 5px;
 text-transform: uppercase;
-color: var(--blau);
+color: var(–blau);
 text-align: center;
 margin-bottom: 0.6rem;
 }
 
 .bereich-titel {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 2.5rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: clamp(1.6rem, 4vw, 2.5rem);
 font-weight: 400;
 text-align: center;
@@ -182,14 +289,26 @@ margin-bottom: 2.5rem;
 }
 
 .karten-raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 gap: 1.2rem;
 }
 
 .karte {
-background: var(--hintergrund);
-border: 1px solid var(--rahmen);
+  background: var(--hintergrund);
+  border: 1px solid var(--rahmen);
+  padding: 1.8rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s;
+background: var(–hintergrund);
+border: 1px solid var(–rahmen);
 padding: 1.8rem;
 text-decoration: none;
 color: inherit;
@@ -200,11 +319,19 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s;
 }
 
 .karte::after {
-content: '';
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--blau);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+content: ‘’;
 position: absolute;
 bottom: 0; left: 0; right: 0;
 height: 2px;
-background: var(--blau);
+background: var(–blau);
 transform: scaleX(0);
 transform-origin: left;
 transition: transform 0.35s ease;
@@ -214,7 +341,13 @@ transition: transform 0.35s ease;
 .karte:hover::after { transform: scaleX(1); }
 
 .karte-nummer {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: rgba(45,90,142,0.13);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 3rem;
 font-weight: 300;
 color: rgba(45,90,142,0.13);
@@ -223,23 +356,37 @@ margin-bottom: 0.4rem;
 }
 
 .karte-titel {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 1.25rem;
 font-weight: 600;
 margin-bottom: 0.5rem;
 }
 
 .karte-beschreibung {
+  font-size: 0.87rem;
+  color: var(--grau);
+  line-height: 1.65;
+  font-weight: 300;
 font-size: 0.87rem;
-color: var(--grau);
+color: var(–grau);
 line-height: 1.65;
 font-weight: 300;
 }
 
 .pfeil {
+  position: absolute;
+  top: 1.8rem; right: 1.8rem;
+  color: var(--blau);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s, transform 0.25s;
 position: absolute;
 top: 1.8rem; right: 1.8rem;
-color: var(--blau);
+color: var(–blau);
 opacity: 0;
 transform: translateX(-4px);
 transition: opacity 0.25s, transform 0.25s;
@@ -248,44 +395,70 @@ transition: opacity 0.25s, transform 0.25s;
 .karte:hover .pfeil { opacity: 1; transform: translateX(0); }
 
 .seitenheader {
+  padding: 4rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--rahmen);
 padding: 4rem 2rem 2.5rem;
 text-align: center;
-border-bottom: 1px solid var(--rahmen);
+border-bottom: 1px solid var(–rahmen);
 }
 
 .seitenheader .klein {
+  font-size: 0.68rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--blau);
+  margin-bottom: 0.8rem;
 font-size: 0.68rem;
 letter-spacing: 5px;
 text-transform: uppercase;
-color: var(--blau);
+color: var(–blau);
 margin-bottom: 0.8rem;
 }
 
 .seitenheader h1 {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: clamp(2rem, 5vw, 3.2rem);
 font-weight: 400;
 margin-bottom: 0.5rem;
 }
 
 .seitenheader .intro {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--grau);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.7;
+font-family: ‘Cormorant Garamond’, serif;
 font-style: italic;
 font-size: 1.1rem;
-color: var(--grau);
+color: var(–grau);
 max-width: 540px;
 margin: 0 auto;
 line-height: 1.7;
 }
 
 .linie {
+  width: 44px;
+  height: 1.5px;
+  background: var(--blau);
+  margin: 1.2rem auto 0;
 width: 44px;
 height: 1.5px;
-background: var(--blau);
+background: var(–blau);
 margin: 1.2rem auto 0;
 }
 
 .inhalt {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 5rem;
 max-width: 800px;
 margin: 0 auto;
 padding: 3.5rem 2rem 5rem;
@@ -294,15 +467,25 @@ padding: 3.5rem 2rem 5rem;
 .abschnitt { margin-bottom: 3rem; }
 
 .abschnitt h3 {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rahmen);
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 1.55rem;
 font-weight: 600;
 margin-bottom: 0.9rem;
 padding-bottom: 0.5rem;
-border-bottom: 1px solid var(--rahmen);
+border-bottom: 1px solid var(–rahmen);
 }
 
 .abschnitt p {
+  font-size: 0.97rem;
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 0.9rem;
 font-size: 0.97rem;
 line-height: 1.9;
 font-weight: 300;
@@ -310,27 +493,43 @@ margin-bottom: 0.9rem;
 }
 
 .zitat {
-border-left: 2.5px solid var(--blau);
+  border-left: 2.5px solid var(--blau);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: var(--flaeche);
+border-left: 2.5px solid var(–blau);
 padding: 1rem 1.5rem;
 margin: 1.5rem 0;
-background: var(--flaeche);
+background: var(–flaeche);
 }
 
 .zitat p {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 0.3rem !important;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 1.1rem;
 font-style: italic;
 margin-bottom: 0.3rem !important;
 }
 
 .zitat .quelle-text {
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blau);
 font-size: 0.72rem;
 letter-spacing: 1px;
 text-transform: uppercase;
-color: var(--blau);
+color: var(–blau);
 }
 
 .fakten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 gap: 1rem;
@@ -338,8 +537,13 @@ margin: 1.5rem 0;
 }
 
 .fakt {
-background: var(--flaeche);
-border: 1px solid var(--rahmen);
+  background: var(--flaeche);
+  border: 1px solid var(--rahmen);
+  padding: 1.2rem;
+  text-align: center;
+  transition: transform 0.25s;
+background: var(–flaeche);
+border: 1px solid var(–rahmen);
 padding: 1.2rem;
 text-align: center;
 transition: transform 0.25s;
@@ -348,35 +552,56 @@ transition: transform 0.25s;
 .fakt:hover { transform: translateY(-3px); }
 
 .fakt-zahl {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blau);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 2rem;
 font-weight: 700;
-color: var(--blau);
+color: var(–blau);
 line-height: 1;
 margin-bottom: 0.3rem;
 }
 
 .fakt-text {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--grau);
 font-size: 0.7rem;
 letter-spacing: 1px;
 text-transform: uppercase;
-color: var(--grau);
+color: var(–grau);
 }
 
 .liste { list-style: none; margin: 1rem 0; }
 
 .liste li {
+  padding: 0.55rem 0 0.55rem 1.2rem;
+  position: relative;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  font-weight: 300;
+  border-bottom: 1px solid var(--rahmen);
 padding: 0.55rem 0 0.55rem 1.2rem;
 position: relative;
 font-size: 0.94rem;
 line-height: 1.75;
 font-weight: 300;
-border-bottom: 1px solid var(--rahmen);
+border-bottom: 1px solid var(–rahmen);
 }
 
 .liste li::before { content: '—'; position: absolute; left: 0; color: var(--blau); }
+.liste li::before { content: ‘—’; position: absolute; left: 0; color: var(–blau); }
 
 .zwei-spalten {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 1.5rem 0;
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 1.2rem;
@@ -386,17 +611,27 @@ margin: 1.5rem 0;
 @media (max-width: 580px) { .zwei-spalten { grid-template-columns: 1fr; } }
 
 .spalte { background: var(--flaeche); border: 1px solid var(--rahmen); padding: 1.4rem; }
+.spalte { background: var(–flaeche); border: 1px solid var(–rahmen); padding: 1.4rem; }
 
 .spalte h4 {
-font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 1.05rem;
 font-weight: 600;
 margin-bottom: 0.6rem;
 }
 
 .spalte p { font-size: 0.88rem; color: var(--grau); line-height: 1.7; font-weight: 300; }
+.spalte p { font-size: 0.88rem; color: var(–grau); line-height: 1.7; font-weight: 300; }
 
 .personen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 gap: 1rem;
@@ -404,38 +639,62 @@ margin: 1.5rem 0;
 }
 
 .person { background: var(--flaeche); border: 1px solid var(--rahmen); padding: 1.3rem; text-align: center; }
+.person { background: var(–flaeche); border: 1px solid var(–rahmen); padding: 1.3rem; text-align: center; }
 
 .person-kreis {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blau), var(--rot));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 700; color: white;
+  margin: 0 auto 0.8rem;
 width: 52px; height: 52px;
 border-radius: 50%;
-background: linear-gradient(135deg, var(--blau), var(--rot));
+background: linear-gradient(135deg, var(–blau), var(–rot));
 display: flex; align-items: center; justify-content: center;
-font-family: 'Cormorant Garamond', serif;
+font-family: ‘Cormorant Garamond’, serif;
 font-size: 1.15rem; font-weight: 700; color: white;
 margin: 0 auto 0.8rem;
 }
 
 .person-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
 .person-beschreibung { font-size: 0.78rem; color: var(--grau); line-height: 1.5; font-weight: 300; }
+.person-name { font-family: ‘Cormorant Garamond’, serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+.person-beschreibung { font-size: 0.78rem; color: var(–grau); line-height: 1.5; font-weight: 300; }
 
 .zeitstrahl { padding: 0.5rem 0; }
 
 .zeiteintrag {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rahmen);
+  align-items: flex-start;
 display: flex;
 gap: 1.5rem;
 padding: 0.9rem 0;
-border-bottom: 1px solid var(--rahmen);
+border-bottom: 1px solid var(–rahmen);
 align-items: flex-start;
 }
 
 .jahr { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700; color: var(--blau); min-width: 55px; }
+.jahr { font-family: ‘Cormorant Garamond’, serif; font-size: 1.25rem; font-weight: 700; color: var(–blau); min-width: 55px; }
 .jahres-text { font-size: 0.92rem; line-height: 1.75; font-weight: 300; padding-top: 2px; }
 
 .seiten-nav {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-top: 1px solid var(--rahmen);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 max-width: 800px;
 margin: 0 auto;
 padding: 2rem;
-border-top: 1px solid var(--rahmen);
+border-top: 1px solid var(–rahmen);
 display: flex;
 justify-content: space-between;
 flex-wrap: wrap;
@@ -443,11 +702,21 @@ gap: 1rem;
 }
 
 .nav-button {
+  display: inline-block;
+  border: 1px solid var(--rahmen);
+  color: var(--grau);
+  padding: 0.55rem 1.3rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 display: inline-block;
-border: 1px solid var(--rahmen);
-color: var(--grau);
+border: 1px solid var(–rahmen);
+color: var(–grau);
 padding: 0.55rem 1.3rem;
-font-family: 'DM Sans', sans-serif;
+font-family: ‘DM Sans’, sans-serif;
 font-size: 0.68rem;
 letter-spacing: 2px;
 text-transform: uppercase;
@@ -456,14 +725,20 @@ transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .nav-button:hover { background: var(--blau); border-color: var(--blau); color: white; }
+.nav-button:hover { background: var(–blau); border-color: var(–blau); color: white; }
 
 .quellen-liste { list-style: none; }
 
 .quelle-eintrag {
+  display: flex;
+  gap: 1.4rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rahmen);
+  align-items: flex-start;
 display: flex;
 gap: 1.4rem;
 padding: 1.4rem 0;
-border-bottom: 1px solid var(--rahmen);
+border-bottom: 1px solid var(–rahmen);
 align-items: flex-start;
 }
 
@@ -471,369 +746,745 @@ align-items: flex-start;
 .quelle-inhalt h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
 .quelle-inhalt p { font-size: 0.85rem; color: var(--grau); line-height: 1.6; margin-bottom: 0.35rem; }
 .quelle-link { font-size: 0.74rem; color: var(--blau); text-decoration: none; word-break: break-all; }
+.quelle-nummer { font-family: ‘Cormorant Garamond’, serif; font-size: 1.5rem; font-weight: 300; color: rgba(45,90,142,0.2); min-width: 30px; line-height: 1; }
+.quelle-inhalt h4 { font-family: ‘Cormorant Garamond’, serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+.quelle-inhalt p { font-size: 0.85rem; color: var(–grau); line-height: 1.6; margin-bottom: 0.35rem; }
+.quelle-link { font-size: 0.74rem; color: var(–blau); text-decoration: none; word-break: break-all; }
 .quelle-link:hover { text-decoration: underline; }
+
+/* ===== QUIZ STYLES ===== */
+.quiz-wrapper {
+max-width: 720px;
+margin: 0 auto;
+padding: 3rem 2rem 5rem;
+}
+
+.quiz-fortschritt {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 2.5rem;
+}
+
+.fortschritt-balken {
+flex: 1;
+height: 3px;
+background: var(–rahmen);
+position: relative;
+overflow: hidden;
+}
+
+.fortschritt-fill {
+height: 100%;
+background: var(–blau);
+transition: width 0.5s ease;
+width: 0%;
+}
+
+.fortschritt-text {
+font-size: 0.72rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–grau);
+white-space: nowrap;
+}
+
+.quiz-frage-block {
+display: none;
+animation: einblenden 0.4s ease both;
+}
+
+.quiz-frage-block.aktiv { display: block; }
+
+.frage-nummer {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.8rem;
+font-weight: 600;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(–blau);
+margin-bottom: 0.8rem;
+}
+
+.frage-text {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(1.3rem, 3vw, 1.75rem);
+font-weight: 400;
+line-height: 1.4;
+margin-bottom: 2rem;
+color: var(–text);
+}
+
+.antwort-liste {
+display: flex;
+flex-direction: column;
+gap: 0.7rem;
+margin-bottom: 2rem;
+}
+
+.antwort-btn {
+background: var(–hintergrund);
+border: 1px solid var(–rahmen);
+padding: 1rem 1.4rem;
+text-align: left;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.95rem;
+font-weight: 300;
+color: var(–text);
+cursor: pointer;
+transition: background 0.2s, border-color 0.2s, transform 0.15s;
+display: flex;
+align-items: center;
+gap: 1rem;
+line-height: 1.5;
+}
+
+.antwort-btn:hover:not(:disabled) {
+background: var(–flaeche);
+border-color: var(–blau);
+transform: translateX(4px);
+}
+
+.antwort-btn .buchstabe {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.1rem;
+font-weight: 700;
+color: var(–blau);
+min-width: 22px;
+opacity: 0.5;
+}
+
+.antwort-btn.richtig {
+background: rgba(45, 142, 60, 0.08);
+border-color: #2D8E3C;
+color: #1a5c22;
+}
+.antwort-btn.richtig .buchstabe { color: #2D8E3C; opacity: 1; }
+
+.antwort-btn.falsch {
+background: rgba(142, 58, 45, 0.08);
+border-color: var(–rot);
+color: #5c1a1a;
+}
+.antwort-btn.falsch .buchstabe { color: var(–rot); opacity: 1; }
+
+.antwort-btn.korrekt-markiert {
+background: rgba(45, 142, 60, 0.05);
+border-color: #2D8E3C;
+border-style: dashed;
+}
+
+.erklaerung {
+display: none;
+background: var(–flaeche);
+border-left: 2.5px solid var(–blau);
+padding: 1rem 1.5rem;
+margin-bottom: 2rem;
+font-size: 0.9rem;
+line-height: 1.75;
+color: var(–grau);
+font-weight: 300;
+animation: einblenden 0.3s ease both;
+}
+
+.erklaerung.sichtbar { display: block; }
+
+.erklaerung strong { color: var(–text); font-weight: 500; }
+
+.weiter-btn {
+background: var(–blau);
+border: 1px solid var(–blau);
+color: white;
+padding: 0.75rem 2rem;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.75rem;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s;
+display: none;
+}
+
+.weiter-btn:hover { background: #1e3f66; transform: translateY(-1px); }
+.weiter-btn.sichtbar { display: inline-block; }
+
+/* Ergebnis */
+.quiz-ergebnis {
+display: none;
+text-align: center;
+animation: einblenden 0.5s ease both;
+}
+
+.quiz-ergebnis.sichtbar { display: block; }
+
+.ergebnis-kreis {
+width: 120px; height: 120px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(–blau), #1e3f66);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 0 auto 2rem;
+}
+
+.ergebnis-zahl {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.8rem;
+font-weight: 700;
+color: white;
+line-height: 1;
+}
+
+.ergebnis-von {
+font-size: 0.65rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: rgba(255,255,255,0.7);
+}
+
+.ergebnis-titel {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2rem;
+font-weight: 400;
+margin-bottom: 0.6rem;
+}
+
+.ergebnis-beschreibung {
+font-size: 0.95rem;
+color: var(–grau);
+font-weight: 300;
+line-height: 1.8;
+max-width: 440px;
+margin: 0 auto 2.5rem;
+}
+
+.ergebnis-buttons {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.ergebnis-detail {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+margin: 2rem 0;
+text-align: center;
+}
+
+.detail-box {
+background: var(–flaeche);
+border: 1px solid var(–rahmen);
+padding: 1.2rem;
+}
+
+.detail-zahl {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2rem;
+font-weight: 700;
+line-height: 1;
+margin-bottom: 0.3rem;
+}
+
+.detail-label {
+font-size: 0.68rem;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–grau);
+}
+
+.quiz-banner {
+background: linear-gradient(135deg, var(–blau), #1e3f66);
+padding: 3rem 2rem;
+text-align: center;
+margin-bottom: 0;
+}
+
+.quiz-banner-titel {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(1.8rem, 4vw, 2.8rem);
+font-weight: 400;
+color: white;
+margin-bottom: 0.5rem;
+}
+
+.quiz-banner-sub {
+font-size: 0.82rem;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: rgba(255,255,255,0.65);
+margin-bottom: 2rem;
+}
+
+.quiz-start-btn {
+background: white;
+border: none;
+color: var(–blau);
+padding: 0.9rem 2.5rem;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.78rem;
+font-weight: 500;
+letter-spacing: 3px;
+text-transform: uppercase;
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.quiz-start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+.quiz-intro { display: block; }
+.quiz-fragen { display: none; }
 
 </style>
 </head>
 <body>
-
-<nav class="navigation">
-<a href="#start" class="logo">4. Juli 1776</a>
-<ul class="nav-links">
-<li><a href="#start">Start</a></li>
-<li><a href="#geschichte">Geschichte</a></li>
-<li><a href="#gesellschaft">Gesellschaft</a></li>
-<li><a href="#traditionen">Traditionen</a></li>
+@@ -487,9 +773,12 @@
 <li><a href="#medien">Medien</a></li>
 <li><a href="#reflexion">Reflexion</a></li>
 <li><a href="#quellen">Quellen</a></li>
+    <li><a href="#quiz" style="color: var(--blau); font-weight: 500;">★ Quiz</a></li>
 </ul>
 </nav>
+
+<!-- ===== START ===== -->
 
 <div id="start" class="seite">
 <div class="startbereich">
 <div class="kleiner-text">Geschichtsprojekt · Klasse 12B · 2026</div>
-<h1 class="haupttitel">4. <em>Juli</em></h1>
-<div class="untertitel">Unabhängigkeitstag der USA</div>
-<p class="einleitung">
-Am 4. Juli 1776 erklärten 13 amerikanische Kolonien ihre Unabhängigkeit
-von Großbritannien – und veränderten die Welt für immer.
-Eine Analyse des wichtigsten Nationalfeiertages der USA.
-</p>
-<div class="info-punkte">
-<span class="info-punkt">1776 · Gründung</span>
-<span class="info-punkt">250 Jahre Geschichte</span>
-<span class="info-punkt">13 Kolonien</span>
-</div>
-</div>
-
-<div class="karten-bereich">
-<div class="bereich-label">Kapitelübersicht</div>
-<h2 class="bereich-titel">Was erwartet dich?</h2>
-<div class="karten-raster">
-<a href="#geschichte" class="karte">
-<div class="karte-nummer">01</div>
-<div class="karte-titel">Historische Bedeutung</div>
-<div class="karte-beschreibung">Warum wurde die Unabhängigkeit erklärt? Wer waren die Gründerväter? Wie entwickelte sich die Tradition?</div>
-<div class="pfeil">→</div>
-</a>
-<a href="#gesellschaft" class="karte">
-<div class="karte-nummer">02</div>
-<div class="karte-titel">Gesellschaftliche Perspektiven</div>
-<div class="karte-beschreibung">Wer feiert – und wer nicht? Die kritische Sicht von Afroamerikanern, Native Americans und die BLM-Bewegung.</div>
-<div class="pfeil">→</div>
-</a>
-<a href="#traditionen" class="karte">
-<div class="karte-nummer">03</div>
-<div class="karte-titel">Begegnung & Traditionen</div>
-<div class="karte-beschreibung">14.000 Feuerwerke, 150 Millionen Hot Dogs, Paraden – wie feiert Amerika seinen größten Tag?</div>
-<div class="pfeil">→</div>
-</a>
-<a href="#medien" class="karte">
-<div class="karte-nummer">04</div>
-<div class="karte-titel">Mediale Repräsentation</div>
-<div class="karte-beschreibung">Von patriotischen Berichten zu kritischen Stimmen – wie zeigen Medien den 4. Juli?</div>
-<div class="pfeil">→</div>
-</a>
-<a href="#reflexion" class="karte">
-<div class="karte-nummer">05</div>
-<div class="karte-titel">Historisches Bewusstsein</div>
-<div class="karte-beschreibung">Verbindet oder spaltet der Feiertag Amerika? Was soll erinnert werden – und was wird vergessen?</div>
-<div class="pfeil">→</div>
-</a>
-<a href="#quellen" class="karte">
-<div class="karte-nummer">06</div>
-<div class="karte-titel">Quellenverzeichnis</div>
+@@ -547,10 +836,22 @@ <h2 class="bereich-titel">Was erwartet dich?</h2>
 <div class="karte-beschreibung">Alle 7 verwendeten Quellen des Projekts mit Links.</div>
 <div class="pfeil">→</div>
 </a>
+      <a href="#quiz" class="karte" style="border-color: rgba(45,90,142,0.5); background: rgba(45,90,142,0.05);">
+        <div class="karte-nummer" style="color: rgba(45,90,142,0.3);">★</div>
+        <div class="karte-titel">Quiz – Teste dein Wissen</div>
+        <div class="karte-beschreibung">10 Fragen zum 4. Juli für Mitschüler nach der Präsentation. Wie viel hast du behalten?</div>
+        <div class="pfeil">→</div>
+      </a>
 </div>
 </div>
+
+  <div style="text-align:center; padding: 0 2rem 5rem;">
+    <a href="#quiz" class="nav-button" style="font-size:0.78rem; padding:0.9rem 2.5rem; background:var(--blau); border-color:var(--blau); color:white; letter-spacing:3px;">★ Quiz starten →</a>
+  </div>
 </div>
+
+<!-- ===== GESCHICHTE ===== -->
 
 <div id="geschichte" class="seite">
 <div class="seitenheader">
 <div class="klein">Kapitel 01</div>
-<h1>Historische Bedeutung</h1>
-<p class="intro">Warum gibt es diesen Feiertag? Welche Ereignisse und Personen werden erinnert?</p>
-<div class="linie"></div>
-</div>
-<div class="inhalt">
-<div class="abschnitt">
-<h3>Die Unabhängigkeitserklärung</h3>
-<p>Der 4. Juli ist der Nationalfeiertag der USA. An diesem Tag im Jahr 1776 wurde die Unabhängigkeitserklärung – auf Englisch „Declaration of Independence" – offiziell angenommen. Damit trennten sich die 13 amerikanischen Kolonien von Großbritannien und gründeten einen neuen, unabhängigen Staat.</p>
-<div class="zitat">
-<p>„Wir halten diese Wahrheiten für selbstverständlich: dass alle Menschen gleich geschaffen sind, dass sie von ihrem Schöpfer mit unveräußerlichen Rechten ausgestattet sind ..."</p>
-<span class="quelle-text">— Declaration of Independence, 4. Juli 1776</span>
+@@ -598,6 +899,8 @@ <h3>Hat der Tag an Bedeutung gewonnen?</h3>
 </div>
 </div>
-<div class="abschnitt">
-<h3>Die Gründerväter</h3>
-<p>Die wichtigsten Personen hinter der Unabhängigkeitserklärung riskierten buchstäblich ihr Leben – denn mit ihrer Unterschrift begingen sie offiziell Hochverrat an Großbritannien.</p>
-<div class="personen">
-<div class="person"><div class="person-kreis">TJ</div><div class="person-name">Thomas Jefferson</div><div class="person-beschreibung">Schrieb den Hauptteil der Erklärung</div></div>
-<div class="person"><div class="person-kreis">BF</div><div class="person-name">Benjamin Franklin</div><div class="person-beschreibung">Staatsmann, Erfinder und Diplomat</div></div>
-<div class="person"><div class="person-kreis">JA</div><div class="person-name">John Adams</div><div class="person-beschreibung">Später 2. Präsident der USA</div></div>
-<div class="person"><div class="person-kreis">+53</div><div class="person-name">56 Unterzeichner</div><div class="person-beschreibung">Alle riskierten ihr Leben</div></div>
-</div>
-</div>
-<div class="abschnitt">
-<h3>Entwicklung der Tradition</h3>
-<div class="zeitstrahl">
-<div class="zeiteintrag"><div class="jahr">1776</div><div class="jahres-text">Die Unabhängigkeitserklärung wird offiziell angenommen.</div></div>
-<div class="zeiteintrag"><div class="jahr">1777</div><div class="jahres-text">Erstes Feuerwerk in Rhode Island – 13 Kanonen für die 13 Gründungsstaaten.</div></div>
-<div class="zeiteintrag"><div class="jahr">1870</div><div class="jahres-text">Offiziell anerkannter nationaler Feiertag der USA.</div></div>
-<div class="zeiteintrag"><div class="jahr">1941</div><div class="jahres-text">Bezahlter freier Tag für alle Bundesangestellten.</div></div>
-<div class="zeiteintrag"><div class="jahr">Heute</div><div class="jahres-text">Symbol für Freiheit, Demokratie und Nationalstolz – aber auch kritisch reflektiert.</div></div>
-</div>
-</div>
-<div class="abschnitt">
-<h3>Hat der Tag an Bedeutung gewonnen?</h3>
-<p>Der 4. Juli hat eher an Bedeutung gewonnen. Er steht heute nicht nur für die Unabhängigkeit von 1776, sondern auch für amerikanische Werte wie Freiheit, Demokratie und Nationalstolz. Allerdings wird er von manchen kritisch gesehen, da die Freiheit damals nicht für alle galt.</p>
-</div>
-</div>
-<div class="seiten-nav">
-<a href="#start" class="nav-button">← Start</a>
-<a href="#gesellschaft" class="nav-button">Gesellschaft →</a>
-</div>
-</div>
+
+<!-- ===== GESELLSCHAFT ===== -->
 
 <div id="gesellschaft" class="seite">
 <div class="seitenheader">
 <div class="klein">Kapitel 02</div>
-<h1>Gesellschaftliche Perspektiven</h1>
-<p class="intro">Wer setzt sich aktiv für den Feiertag ein – und wer steht ihm kritisch gegenüber?</p>
-<div class="linie"></div>
-</div>
-<div class="inhalt">
-<div class="abschnitt">
-<h3>Befürworter und Kritiker</h3>
-<div class="zwei-spalten">
-<div class="spalte"><h4>Befürworter</h4><p>Patriotische Organisationen, lokale Gemeinden, Schulen und Einwanderer, die den Tag als Symbol ihrer eigenen Freiheit sehen.</p></div>
-<div class="spalte"><h4>Kritische Stimmen</h4><p>Afroamerikanische Aktivisten, Native Americans und die BLM-Bewegung weisen auf Widersprüche im Freiheitsversprechen hin.</p></div>
+@@ -646,6 +949,8 @@ <h3>Regionale und internationale Unterschiede</h3>
 </div>
 </div>
-<div class="abschnitt">
-<h3>Wer setzt sich aktiv ein?</h3>
-<ul class="liste">
-<li>Patriotische Organisationen wie die „American Legion" oder „Veterans of Foreign Wars" organisieren Paraden und Gedenkfeiern</li>
-<li>Lokale Gemeinden und Städte veranstalten Feuerwerke und Konzerte</li>
-<li>Schulen und Bildungseinrichtungen nutzen den Tag für Geschichtsunterricht</li>
-<li>Migranten sehen den Tag oft als Symbol für ihre eigene Freiheit in Amerika</li>
-</ul>
-</div>
-<div class="abschnitt">
-<h3>Frederick Douglass – Eine historische Anklage</h3>
-<p>Der afroamerikanische Redner Frederick Douglass hielt 1852 eine der bekanntesten Reden der amerikanischen Geschichte.</p>
-<div class="zitat">
-<p>„What to the Slave is the 4th of July?" – Er fragte, was dieser Tag für Menschen bedeutet, die keine Rechte hatten, und prangerte die Heuchelei einer Nation an, die Freiheit feierte, während sie Millionen versklavte.</p>
-<span class="quelle-text">— Frederick Douglass, 5. Juli 1852</span>
-</div>
-<p>Im Zuge der <strong>Black-Lives-Matter-Bewegung</strong> ab den 2010er Jahren wurde diese Frage wieder hochaktuell. Auch <strong>indigene Völker</strong> sehen den Feiertag kritisch – die Unabhängigkeit bedeutete für sie Verdrängung und Verlust ihrer Länder.</p>
-</div>
-<div class="abschnitt">
-<h3>Regionale und internationale Unterschiede</h3>
-<div class="fakten">
-<div class="fakt"><div class="fakt-zahl">Süden</div><div class="fakt-text">Fokus auf Nationalstolz & Militär</div></div>
-<div class="fakt"><div class="fakt-zahl">NYC</div><div class="fakt-text">Riesige öffentliche Feuerwerke</div></div>
-<div class="fakt"><div class="fakt-zahl">Global</div><div class="fakt-text">US-Botschaften feiern weltweit</div></div>
-</div>
-</div>
-</div>
-<div class="seiten-nav">
-<a href="#geschichte" class="nav-button">← Geschichte</a>
-<a href="#traditionen" class="nav-button">Traditionen →</a>
-</div>
-</div>
+
+<!-- ===== TRADITIONEN ===== -->
 
 <div id="traditionen" class="seite">
 <div class="seitenheader">
 <div class="klein">Kapitel 03</div>
-<h1>Begegnung & Traditionen</h1>
-<p class="intro">Rituale, Symbole und Veranstaltungen rund um den 4. Juli</p>
-<div class="linie"></div>
-</div>
-<div class="inhalt">
-<div class="abschnitt">
-<h3>Die großen Zahlen</h3>
-<div class="fakten">
-<div class="fakt"><div class="fakt-zahl">14.000</div><div class="fakt-text">Feuerwerke in Amerika</div></div>
-<div class="fakt"><div class="fakt-zahl">150M</div><div class="fakt-text">Hot Dogs gegessen</div></div>
-<div class="fakt"><div class="fakt-zahl">68%</div><div class="fakt-text">Amerikaner grillen</div></div>
-<div class="fakt"><div class="fakt-zahl">56</div><div class="fakt-text">Unterzeichner</div></div>
+@@ -689,6 +994,8 @@ <h3>Lokal, national & international</h3>
 </div>
 </div>
-<div class="abschnitt">
-<h3>Rituale & Symbole</h3>
-<ul class="liste">
-<li><strong>Feuerwerk:</strong> Das wichtigste Symbol – mehr als 14.000 Feuerwerke erhellen den Nachthimmel</li>
-<li><strong>Paraden:</strong> Festumzüge mit Militär, Kapellen und Festwagen</li>
-<li><strong>Barbecues & Picknicks:</strong> Der beliebteste Grillfeier-Tag der USA – 68 % der Amerikaner grillen</li>
-<li><strong>Nationalhymne:</strong> Das Singen von „The Star-Spangled Banner"</li>
-<li><strong>Verlesen der Erklärung:</strong> Bei offiziellen Veranstaltungen z.B. in Philadelphia</li>
-<li><strong>Symbole:</strong> US-Flagge, Freiheitsstatue, Weißkopfseeadler, Rot-Weiß-Blau</li>
-</ul>
-</div>
-<div class="abschnitt">
-<h3>Lokal, national & international</h3>
-<div class="zwei-spalten">
-<div class="spalte"><h4>Lokal</h4><p>Kleine Gemeinden feiern mit lokalen Paraden, Sportveranstaltungen und Picknicks.</p></div>
-<div class="spalte"><h4>National</h4><p>Große Konzerte auf der National Mall in Washington D.C. sowie live übertragene Feuerwerke.</p></div>
-</div>
-<div class="spalte" style="margin-top: 1.2rem;"><h4>International</h4><p>US-Botschaften weltweit laden Gastländer zu Empfängen ein, um amerikanische Kultur zu zeigen.</p></div>
-</div>
-</div>
-<div class="seiten-nav">
-<a href="#gesellschaft" class="nav-button">← Gesellschaft</a>
-<a href="#medien" class="nav-button">Medien →</a>
-</div>
-</div>
+
+<!-- ===== MEDIEN ===== -->
 
 <div id="medien" class="seite">
 <div class="seitenheader">
 <div class="klein">Kapitel 04</div>
-<h1>Mediale Repräsentation</h1>
-<p class="intro">Wie berichten Medien über den Feiertag – und wie hat sich das verändert?</p>
-<div class="linie"></div>
-</div>
-<div class="inhalt">
-<div class="abschnitt">
-<h3>Berichterstattung heute</h3>
-<p>Zeitungen berichten am 4. Juli über die Geschichte der Unabhängigkeit und aktuelle Veranstaltungen. Große TV-Sender übertragen die Feuerwerke live – das bekannteste ist New York City. Auf Social Media teilen Millionen Fotos und Videos.</p>
-<div class="zitat"><p>Insgesamt essen Amerikaner am 4. Juli rund 150 Millionen Hot Dogs – ein Zeichen, wie sehr der Tag in der Popkultur verankert ist.</p></div>
-</div>
-<div class="abschnitt">
-<h3>Unterschiede je nach Medientyp</h3>
-<div class="zwei-spalten">
-<div class="spalte"><h4>Qualitätsmedien</h4><p>Berichten auch kritisch über Sklaverei, indigene Völker und gesellschaftliche Spaltung.</p></div>
-<div class="spalte"><h4>Unterhaltungsmedien</h4><p>Fokussieren Feierlichkeiten: Feuerwerk, Paraden, Prominente – patriotisch und emotional.</p></div>
+@@ -724,6 +1031,8 @@ <h3>Wie hat sich die Berichterstattung verändert?</h3>
 </div>
 </div>
-<div class="abschnitt">
-<h3>Wie hat sich die Berichterstattung verändert?</h3>
-<div class="zeitstrahl">
-<div class="zeiteintrag"><div class="jahr">Früher</div><div class="jahres-text">Fast ausschließlich patriotische Berichterstattung, kaum Kritik.</div></div>
-<div class="zeiteintrag"><div class="jahr">1960er</div><div class="jahres-text">Während der Bürgerrechtsbewegung begannen Medien auch kritisch zu berichten.</div></div>
-<div class="zeiteintrag"><div class="jahr">2010er+</div><div class="jahres-text">Durch Social Media kommen immer mehr kritische Stimmen zu Wort.</div></div>
-</div>
-</div>
-</div>
-<div class="seiten-nav">
-<a href="#traditionen" class="nav-button">← Traditionen</a>
-<a href="#reflexion" class="nav-button">Reflexion →</a>
-</div>
-</div>
+
+<!-- ===== REFLEXION ===== -->
 
 <div id="reflexion" class="seite">
 <div class="seitenheader">
 <div class="klein">Kapitel 05</div>
-<h1>Historisches Bewusstsein & Reflexion</h1>
-<p class="intro">Was soll erinnert werden? Verbindet oder spaltet dieser Feiertag die USA?</p>
-<div class="linie"></div>
-</div>
-<div class="inhalt">
-<div class="abschnitt">
-<h3>Nationale Identität</h3>
-<p>Der 4. Juli ist für die meisten Amerikaner ein zentrales Symbol ihrer nationalen Identität. Die alljährliche Erinnerung an die Unabhängigkeitserklärung prägt das Selbstverständnis der Amerikaner. Der Tag erinnert an die Ideale <strong>Freiheit</strong>, <strong>Gleichheit</strong> und das <strong>Recht auf Selbstbestimmung</strong>.</p>
-</div>
-<div class="abschnitt">
-<h3>Was soll erinnert und bewahrt werden?</h3>
-<ul class="liste">
-<li>Der Mut der Gründungsväter, die sich gegen die Kolonialmacht Großbritannien stellten</li>
-<li>Das Bewusstsein, dass Demokratie und Freiheit erkämpft wurden und keine Selbstverständlichkeit sind</li>
-<li>Künftige Generationen sollen daran erinnert werden, diese Werte zu verteidigen</li>
-</ul>
-</div>
-<div class="abschnitt">
-<h3>Verbindend oder spaltend?</h3>
-<div class="zitat"><p>Der 4. Juli hat beides: Er kann Menschen zusammenbringen – und gleichzeitig tiefsitzende gesellschaftliche Wunden sichtbar machen.</p></div>
-<div class="zwei-spalten">
-        <div class="spalte"><h4>🤝 Verbindend</h4><p>Fast alle Amerikaner feiern gemeinsam. Der Tag ist ein Symbol der nationalen Identität.</p></div>
-        <div class="spalte"><h4>⚡ Spaltend</h4><p>Die „selbstverständlichen Wahrheiten" galten 1776 nur für freie weiße Männer. Diese Spannung ist bis heute spürbar.</p></div>
-        <div class="spalte"><h4>Verbindend</h4><p>Fast alle Amerikaner feiern gemeinsam. Der Tag ist ein Symbol der nationalen Identität.</p></div>
-        <div class="spalte"><h4>Spaltend</h4><p>Die „selbstverständlichen Wahrheiten" galten 1776 nur für freie weiße Männer. Diese Spannung ist bis heute spürbar.</p></div>
-</div>
-<p style="margin-top: 1.5rem;">Diese Spannung macht den Feiertag zu einem wichtigen <strong>Spiegel für gesellschaftliche Debatten</strong> in den USA.</p>
+@@ -760,6 +1069,8 @@ <h3>Verbindend oder spaltend?</h3>
 </div>
 </div>
-<div class="seiten-nav">
-<a href="#medien" class="nav-button">← Medien</a>
-<a href="#quellen" class="nav-button">Quellen →</a>
-</div>
-</div>
+
+<!-- ===== QUELLEN ===== -->
 
 <div id="quellen" class="seite">
 <div class="seitenheader">
 <div class="klein">Quellenverzeichnis</div>
-<h1>Quellen</h1>
-<p class="intro">Alle Quellen abgerufen am 05. März 2026</p>
-<div class="linie"></div>
-</div>
-<div class="inhalt">
-<ul class="quellen-liste">
-<li class="quelle-eintrag">
-<div class="quelle-nummer">01</div>
-<div class="quelle-inhalt">
-<h4>Wikipedia – Unabhängigkeitstag (Vereinigte Staaten)</h4>
-<p>Geschichte, Traditionen, symbolische Bedeutung und gesellschaftliche Diskussionen.</p>
-<a class="quelle-link" href="https://de.wikipedia.org/wiki/Unabh%C3%A4ngigkeitstag_(Vereinigte_Staaten)" target="_blank">de.wikipedia.org/wiki/Unabhängigkeitstag_(Vereinigte_Staaten)</a>
-</div>
-</li>
-<li class="quelle-eintrag">
-<div class="quelle-nummer">02</div>
-<div class="quelle-inhalt">
-<h4>Wikipedia – Unabhängigkeitserklärung der Vereinigten Staaten</h4>
-<p>Entstehung, Inhalt, die 56 Unterzeichner und ihre historische Bedeutung.</p>
-<a class="quelle-link" href="https://de.wikipedia.org/wiki/Unabh%C3%A4ngigkeitserkl%C3%A4rung" target="_blank">de.wikipedia.org/wiki/Unabhängigkeitserklärung</a>
-</div>
-</li>
-<li class="quelle-eintrag">
+@@ -789,7 +1100,7 @@ <h4>Wikipedia – Unabhängigkeitserklärung der Vereinigten Staaten</h4>
 <div class="quelle-nummer">03</div>
 <div class="quelle-inhalt">
 <h4>US-Botschaft in Deutschland – Feierlichkeiten zum 4. Juli</h4>
-<p>Offizielle Seite der US-Botschaft: Traditionen und regionale Besonderheiten.</p>
+          <p>Offizielle Seite der US-Botschaft: Traditionen und regionale Besonderheiten.</p>
+          <p>Offizielle Seite der US-Botschaft: Traditionen und regionale Besonderheeten.</p>
 <a class="quelle-link" href="https://de.usembassy.gov/de/feierlichkeiten-zum-4-juli-in-den-vereinigten-staaten/" target="_blank">de.usembassy.gov/de/feierlichkeiten-zum-4-juli</a>
 </div>
 </li>
-<li class="quelle-eintrag">
-<div class="quelle-nummer">04</div>
-<div class="quelle-inhalt">
-<h4>Studyflix – 4. Juli USA</h4>
-<p>Hintergrund, Geschichte des Unabhängigkeitskrieges und Bedeutung des Feiertages.</p>
-<a class="quelle-link" href="https://studyflix.de/geschichte/4-juli-usa-7179" target="_blank">studyflix.de/geschichte/4-juli-usa-7179</a>
-</div>
-</li>
-<li class="quelle-eintrag">
-<div class="quelle-nummer">05</div>
-<div class="quelle-inhalt">
-<h4>Info-USA.de – Independence Day: Ursprung und Traditionen</h4>
-<p>Fakten und Zahlen: Entstehungsgeschichte, Traditionen und Hintergrundinformationen.</p>
-<a class="quelle-link" href="https://www.info-usa.de/independence-day/" target="_blank">info-usa.de/independence-day/</a>
-</div>
-</li>
-<li class="quelle-eintrag">
-<div class="quelle-nummer">06</div>
-<div class="quelle-inhalt">
-<h4>bpb – Eine Nation entsteht</h4>
-<p>Entstehung der Unabhängigkeitserklärung, Rolle der Gründungsväter, Widersprüche zwischen Freiheitsversprechen und Sklaverei.</p>
-<a class="quelle-link" href="https://www.bpb.de/themen/nordamerika/usa/10590/eine-nation-entsteht/" target="_blank">bpb.de/themen/nordamerika/usa/10590/eine-nation-entsteht/</a>
-</div>
-</li>
-<li class="quelle-eintrag">
-<div class="quelle-nummer">07</div>
-<div class="quelle-inhalt">
-<h4>bpb – Erinnerungskultur zwischen Hegemonialgeschichte und Pluralismus</h4>
-<p>Gesellschaftliche Bedeutung, Kritik durch afroamerikanische Aktivisten und Feiern zum 250. Jubiläum 2026.</p>
-<a class="quelle-link" href="https://www.bpb.de/themen/nordamerika/usa/334753/erinnerungskultur-zwischen-hegemonialgeschichte-und-pluralismus/" target="_blank">bpb.de/themen/nordamerika/usa/334753/erinnerungskultur...</a>
-</div>
-</li>
-</ul>
+@@ -829,9 +1140,357 @@ <h4>bpb – Erinnerungskultur zwischen Hegemonialgeschichte und Pluralismus</h4>
 </div>
 <div class="seiten-nav">
 <a href="#reflexion" class="nav-button">← Reflexion</a>
+    <a href="#quiz" class="nav-button" style="background: var(--blau); border-color: var(--blau); color: white;">★ Quiz starten →</a>
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+
+<div id="quiz" class="seite">
+  <div class="quiz-banner">
+    <div class="quiz-banner-sub">Nach der Präsentation · Klasse 12B</div>
+    <div class="quiz-banner-titel">Teste dein Wissen</div>
+  </div>
+
+  <div class="quiz-wrapper">
+
+```
+<!-- Intro -->
+<div id="quiz-intro" class="quiz-intro">
+  <div style="text-align:center; padding: 2rem 0 3rem;">
+    <div class="bereich-label">10 Fragen · Multiple Choice</div>
+    <h2 class="bereich-titel" style="margin-bottom: 1rem;">Bist du bereit?</h2>
+    <p style="font-size: 0.95rem; color: var(--grau); font-weight: 300; line-height: 1.85; max-width: 480px; margin: 0 auto 2rem;">
+      Dieses Quiz testet, was du aus der Präsentation über den 4. Juli mitgenommen hast.
+      Wähle die richtige Antwort – nach jeder Frage siehst du, ob du richtig lagst.
+    </p>
+    <button class="quiz-start-btn" onclick="quizStarten()" style="background: var(--blau); color: white; border: none; padding: 0.9rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; cursor: pointer;">Quiz starten →</button>
+  </div>
+</div>
+
+<!-- Fragen -->
+<div id="quiz-fragen" class="quiz-fragen">
+
+  <div class="quiz-fortschritt">
+    <div class="fortschritt-balken"><div class="fortschritt-fill" id="fortschritt-fill"></div></div>
+    <div class="fortschritt-text" id="fortschritt-text">Frage 1 / 10</div>
+  </div>
+
+  <!-- Frage 1 -->
+  <div class="quiz-frage-block" id="frage-0">
+    <div class="frage-nummer">Frage 01 / 10</div>
+    <div class="frage-text">In welchem Jahr wurde die amerikanische Unabhängigkeitserklärung offiziell angenommen?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 0, false)"><span class="buchstabe">A</span> 1763</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 0, true)"><span class="buchstabe">B</span> 1776</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 0, false)"><span class="buchstabe">C</span> 1783</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 0, false)"><span class="buchstabe">D</span> 1800</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-0">
+      <strong>Richtig: 1776.</strong> Am 4. Juli 1776 nahm der Kontinentalkongress die „Declaration of Independence" offiziell an. Die 13 amerikanischen Kolonien trennten sich damit von Großbritannien.
+    </div>
+    <button class="weiter-btn" id="weiter-0" onclick="naechsteFrage(1)">Weiter →</button>
+  </div>
+
+  <!-- Frage 2 -->
+  <div class="quiz-frage-block" id="frage-1">
+    <div class="frage-nummer">Frage 02 / 10</div>
+    <div class="frage-text">Wer schrieb den Hauptteil der Unabhängigkeitserklärung?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 1, false)"><span class="buchstabe">A</span> Benjamin Franklin</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 1, false)"><span class="buchstabe">B</span> George Washington</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 1, true)"><span class="buchstabe">C</span> Thomas Jefferson</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 1, false)"><span class="buchstabe">D</span> John Adams</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-1">
+      <strong>Richtig: Thomas Jefferson.</strong> Jefferson verfasste den Haupttext der Erklärung. Benjamin Franklin und John Adams überarbeiteten ihn noch leicht, bevor er angenommen wurde.
+    </div>
+    <button class="weiter-btn" id="weiter-1" onclick="naechsteFrage(2)">Weiter →</button>
+  </div>
+
+  <!-- Frage 3 -->
+  <div class="quiz-frage-block" id="frage-2">
+    <div class="frage-nummer">Frage 03 / 10</div>
+    <div class="frage-text">Wie viele Kolonien trennten sich 1776 von Großbritannien?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 2, false)"><span class="buchstabe">A</span> 7</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 2, false)"><span class="buchstabe">B</span> 10</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 2, true)"><span class="buchstabe">C</span> 13</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 2, false)"><span class="buchstabe">D</span> 15</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-2">
+      <strong>Richtig: 13 Kolonien.</strong> Die 13 britischen Kolonien an der Ostküste Nordamerikas erklärten gemeinsam ihre Unabhängigkeit. Daran erinnert auch das erste Feuerwerk 1777 – mit 13 Kanonenschüssen.
+    </div>
+    <button class="weiter-btn" id="weiter-2" onclick="naechsteFrage(3)">Weiter →</button>
+  </div>
+
+  <!-- Frage 4 -->
+  <div class="quiz-frage-block" id="frage-3">
+    <div class="frage-nummer">Frage 04 / 10</div>
+    <div class="frage-text">Wann wurde der 4. Juli offiziell als nationaler Feiertag der USA anerkannt?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 3, false)"><span class="buchstabe">A</span> 1776</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 3, false)"><span class="buchstabe">B</span> 1812</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 3, true)"><span class="buchstabe">C</span> 1870</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 3, false)"><span class="buchstabe">D</span> 1941</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-3">
+      <strong>Richtig: 1870.</strong> Erst 94 Jahre nach der Unabhängigkeitserklärung wurde der 4. Juli offiziell als Nationalfeiertag anerkannt. 1941 wurde er zusätzlich zum bezahlten freien Tag für Bundesangestellte.
+    </div>
+    <button class="weiter-btn" id="weiter-3" onclick="naechsteFrage(4)">Weiter →</button>
+  </div>
+
+  <!-- Frage 5 -->
+  <div class="quiz-frage-block" id="frage-4">
+    <div class="frage-nummer">Frage 05 / 10</div>
+    <div class="frage-text">Was ist das wichtigste Symbol des 4. Juli in Amerika?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 4, false)"><span class="buchstabe">A</span> Barbecue</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 4, true)"><span class="buchstabe">B</span> Feuerwerk</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 4, false)"><span class="buchstabe">C</span> Hot Dogs</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 4, false)"><span class="buchstabe">D</span> Paraden</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-4">
+      <strong>Richtig: Feuerwerk.</strong> Mehr als 14.000 Feuerwerke erhellen jedes Jahr am 4. Juli den amerikanischen Nachthimmel. Das erste Feuerwerk gab es bereits 1777 in Rhode Island.
+    </div>
+    <button class="weiter-btn" id="weiter-4" onclick="naechsteFrage(5)">Weiter →</button>
+  </div>
+
+  <!-- Frage 6 -->
+  <div class="quiz-frage-block" id="frage-5">
+    <div class="frage-nummer">Frage 06 / 10</div>
+    <div class="frage-text">Welcher afroamerikanische Redner hielt 1852 die berühmte Rede „What to the Slave is the 4th of July?"</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 5, false)"><span class="buchstabe">A</span> Martin Luther King Jr.</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 5, true)"><span class="buchstabe">B</span> Frederick Douglass</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 5, false)"><span class="buchstabe">C</span> Malcolm X</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 5, false)"><span class="buchstabe">D</span> Harriet Tubman</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-5">
+      <strong>Richtig: Frederick Douglass.</strong> Er hielt diese Rede am 5. Juli 1852 und prangerte die Heuchelei einer Nation an, die Freiheit feierte und gleichzeitig Millionen Menschen versklavte.
+    </div>
+    <button class="weiter-btn" id="weiter-5" onclick="naechsteFrage(6)">Weiter →</button>
+  </div>
+
+  <!-- Frage 7 -->
+  <div class="quiz-frage-block" id="frage-6">
+    <div class="frage-nummer">Frage 07 / 10</div>
+    <div class="frage-text">Wie viele Menschen unterschrieben die amerikanische Unabhängigkeitserklärung?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 6, false)"><span class="buchstabe">A</span> 13</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 6, false)"><span class="buchstabe">B</span> 39</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 6, true)"><span class="buchstabe">C</span> 56</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 6, false)"><span class="buchstabe">D</span> 100</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-6">
+      <strong>Richtig: 56 Unterzeichner.</strong> Alle 56 Männer riskierten mit ihrer Unterschrift ihr Leben, da sie damit offiziell Hochverrat an Großbritannien begingen.
+    </div>
+    <button class="weiter-btn" id="weiter-6" onclick="naechsteFrage(7)">Weiter →</button>
+  </div>
+
+  <!-- Frage 8 -->
+  <div class="quiz-frage-block" id="frage-7">
+    <div class="frage-nummer">Frage 08 / 10</div>
+    <div class="frage-text">Welcher Prozentsatz der Amerikaner grillt am 4. Juli?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 7, false)"><span class="buchstabe">A</span> 45 %</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 7, false)"><span class="buchstabe">B</span> 55 %</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 7, true)"><span class="buchstabe">C</span> 68 %</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 7, false)"><span class="buchstabe">D</span> 80 %</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-7">
+      <strong>Richtig: 68 %.</strong> Der 4. Juli ist der beliebteste Grillfeier-Tag der USA. Insgesamt werden etwa 150 Millionen Hot Dogs gegessen.
+    </div>
+    <button class="weiter-btn" id="weiter-7" onclick="naechsteFrage(8)">Weiter →</button>
+  </div>
+
+  <!-- Frage 9 -->
+  <div class="quiz-frage-block" id="frage-8">
+    <div class="frage-nummer">Frage 09 / 10</div>
+    <div class="frage-text">Welche der folgenden Gruppen sieht den 4. Juli aus einem kritischen Blickwinkel, weil die Unabhängigkeit für sie Verdrängung und Landverlust bedeutete?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 8, false)"><span class="buchstabe">A</span> Einwanderer aus Europa</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 8, false)"><span class="buchstabe">B</span> Veteranen</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 8, true)"><span class="buchstabe">C</span> Indigene Völker (Native Americans)</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 8, false)"><span class="buchstabe">D</span> Kanadier</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-8">
+      <strong>Richtig: Indigene Völker.</strong> Für Native Americans bedeutete die Gründung der USA und die anschließende Expansion vor allem Verdrängung, Landverlust und Unterdrückung ihrer Kulturen.
+    </div>
+    <button class="weiter-btn" id="weiter-8" onclick="naechsteFrage(9)">Weiter →</button>
+  </div>
+
+  <!-- Frage 10 -->
+  <div class="quiz-frage-block" id="frage-9">
+    <div class="frage-nummer">Frage 10 / 10</div>
+    <div class="frage-text">Was stellt der 4. Juli laut der Präsentation in der gesellschaftlichen Debatte dar?</div>
+    <div class="antwort-liste">
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 9, false)"><span class="buchstabe">A</span> Einen rein positiven Feiertag ohne Kritik</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 9, false)"><span class="buchstabe">B</span> Einen überwiegend kommerziellen Feiertag</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 9, true)"><span class="buchstabe">C</span> Einen Spiegel für gesellschaftliche Debatten und Spannungen</button>
+      <button class="antwort-btn" onclick="antwortWaehlen(this, 9, false)"><span class="buchstabe">D</span> Einen Feiertag nur für weiße Amerikaner</button>
+    </div>
+    <div class="erklaerung" id="erklaerung-9">
+      <strong>Richtig: Ein Spiegel für gesellschaftliche Debatten.</strong> Der 4. Juli kann verbinden und gleichzeitig tiefe gesellschaftliche Wunden sichtbar machen – er ist beides: verbindend und spaltend zugleich.
+    </div>
+    <button class="weiter-btn" id="weiter-9" onclick="ergebnisZeigen()">Ergebnis ansehen →</button>
+  </div>
+
+</div>
+
+<!-- Ergebnis -->
+<div id="quiz-ergebnis" class="quiz-ergebnis">
+  <div class="ergebnis-kreis">
+    <div class="ergebnis-zahl" id="ergebnis-zahl">0</div>
+    <div class="ergebnis-von">von 10</div>
+  </div>
+  <h2 class="ergebnis-titel" id="ergebnis-titel">Gut gemacht!</h2>
+  <p class="ergebnis-beschreibung" id="ergebnis-text"></p>
+
+  <div class="ergebnis-detail">
+    <div class="detail-box">
+      <div class="detail-zahl" id="detail-richtig" style="color: #2D8E3C;">0</div>
+      <div class="detail-label">Richtig</div>
+    </div>
+    <div class="detail-box">
+      <div class="detail-zahl" id="detail-falsch" style="color: var(--rot);">0</div>
+      <div class="detail-label">Falsch</div>
+    </div>
+    <div class="detail-box">
+      <div class="detail-zahl" id="detail-prozent" style="color: var(--blau);">0%</div>
+      <div class="detail-label">Trefferquote</div>
+    </div>
+  </div>
+
+  <div class="ergebnis-buttons">
+    <button class="weiter-btn sichtbar" onclick="quizNeustart()" style="background: var(--flaeche); color: var(--text); border-color: var(--rahmen);">↺ Nochmal</button>
+    <a href="#start" class="nav-button" style="display: inline-block; padding: 0.75rem 1.5rem;">← Zur Präsentation</a>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="seiten-nav" style="max-width: 720px;">
+    <a href="#quellen" class="nav-button">← Quellen</a>
 <a href="#start" class="nav-button">Zur Startseite →</a>
 </div>
 </div>
+
+<script>
+let punkte = 0;
+let aktuelleFrageIndex = 0;
+
+function quizStarten() {
+  document.getElementById('quiz-intro').style.display = 'none';
+  document.getElementById('quiz-fragen').style.display = 'block';
+  zeigeFrageBlock(0);
+  aktualisiereFortschritt(0);
+}
+
+function zeigeFrageBlock(index) {
+  document.querySelectorAll('.quiz-frage-block').forEach(el => el.classList.remove('aktiv'));
+  const block = document.getElementById('frage-' + index);
+  if (block) block.classList.add('aktiv');
+  aktuelleFrageIndex = index;
+  aktualisiereFortschritt(index);
+}
+
+function aktualisiereFortschritt(index) {
+  const fill = document.getElementById('fortschritt-fill');
+  const text = document.getElementById('fortschritt-text');
+  const prozent = (index / 10) * 100;
+  fill.style.width = prozent + '%';
+  text.textContent = 'Frage ' + (index + 1) + ' / 10';
+}
+
+function antwortWaehlen(btn, frageIndex, richtig) {
+  const block = document.getElementById('frage-' + frageIndex);
+  const buttons = block.querySelectorAll('.antwort-btn');
+
+  // Alle Buttons deaktivieren
+  buttons.forEach(b => b.disabled = true);
+
+  if (richtig) {
+    btn.classList.add('richtig');
+    punkte++;
+  } else {
+    btn.classList.add('falsch');
+    // Korrekte Antwort markieren
+    buttons.forEach(b => {
+      const onclick = b.getAttribute('onclick');
+      if (onclick && onclick.includes('true')) {
+        b.classList.add('korrekt-markiert');
+      }
+    });
+  }
+
+  // Erklärung anzeigen
+  const erklaerung = document.getElementById('erklaerung-' + frageIndex);
+  if (erklaerung) erklaerung.classList.add('sichtbar');
+
+  // Weiter-Button anzeigen
+  const weiterBtn = document.getElementById('weiter-' + frageIndex);
+  if (weiterBtn) weiterBtn.classList.add('sichtbar');
+}
+
+function naechsteFrage(naechsterIndex) {
+  zeigeFrageBlock(naechsterIndex);
+}
+
+function ergebnisZeigen() {
+  document.getElementById('quiz-fragen').style.display = 'none';
+  const ergebnis = document.getElementById('quiz-ergebnis');
+  ergebnis.classList.add('sichtbar');
+
+  document.getElementById('ergebnis-zahl').textContent = punkte;
+  document.getElementById('detail-richtig').textContent = punkte;
+  document.getElementById('detail-falsch').textContent = (10 - punkte);
+  document.getElementById('detail-prozent').textContent = (punkte * 10) + '%';
+
+  let titel = '';
+  let text = '';
+
+  if (punkte <= 3) {
+    titel = 'Weiter üben!';
+    text = 'Nur ' + punkte + ' von 10 richtig – schau dir die Präsentation nochmal an. Die wichtigsten Fakten stecken in den einzelnen Kapiteln!';
+  } else if (punkte <= 6) {
+    titel = 'Solide Basis!';
+    text = punkte + ' von 10 – du hast die Grundlagen verstanden. Ein paar Details haben sich noch nicht ganz festgesetzt. Nochmal versuchen?';
+  } else if (punkte <= 8) {
+    titel = 'Sehr gut!';
+    text = punkte + ' von 10 – beeindruckend! Du hast die Präsentation gut verfolgt. Nur noch ein paar Feinheiten fehlen.';
+  } else {
+    titel = 'Ausgezeichnet!';
+    text = punkte + ' von 10 – hervorragend! Du hast die Präsentation wirklich gut aufgenommen. Top!';
+  }
+
+  document.getElementById('ergebnis-titel').textContent = titel;
+  document.getElementById('ergebnis-text').textContent = text;
+}
+
+function quizNeustart() {
+  punkte = 0;
+  aktuelleFrageIndex = 0;
+
+  // Alle Antwort-Buttons zurücksetzen
+  document.querySelectorAll('.antwort-btn').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('richtig', 'falsch', 'korrekt-markiert');
+  });
+
+  // Alle Erklärungen und Weiter-Buttons verstecken
+  document.querySelectorAll('.erklaerung').forEach(e => e.classList.remove('sichtbar'));
+  document.querySelectorAll('.weiter-btn').forEach(b => b.classList.remove('sichtbar'));
+
+  // Ergebnis ausblenden
+  document.getElementById('quiz-ergebnis').classList.remove('sichtbar');
+
+  // Wieder zu Fragen
+  document.getElementById('quiz-fragen').style.display = 'block';
+  zeigeFrageBlock(0);
+}
+</script>
 
 </body>
 </html>
