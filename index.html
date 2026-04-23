@@ -84,9 +84,7 @@ padding-top: 72px;
 animation: einblenden 0.5s ease both;
 }
 
-.seite:first-of-type { display: block; }
-.seite:target { display: block; }
-.seite:target ~ .seite:first-of-type { display: none; }
+.seite.aktiv { display: block; }
 
 @keyframes einblenden {
 from { opacity: 0; transform: translateY(14px); }
@@ -1706,6 +1704,42 @@ function quizNeustart() {
   document.getElementById('quiz-fragen').style.display = 'block';
   zeigeFrageBlock(0);
 }
+</script>
+
+<script>
+function zeigeSeite(id) {
+  document.querySelectorAll('.seite').forEach(s => s.classList.remove('aktiv'));
+  const ziel = document.getElementById(id);
+  if (ziel) {
+    ziel.classList.add('aktiv');
+    window.scrollTo(0, 0);
+  }
+}
+
+// Nav-Links abfangen
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
+  const id = link.getAttribute('href').slice(1);
+  const ziel = document.getElementById(id);
+  if (ziel && ziel.classList.contains('seite')) {
+    e.preventDefault();
+    zeigeSeite(id);
+    history.pushState(null, '', '#' + id);
+  }
+});
+
+// Beim Laden: Hash auswerten oder erste Seite zeigen
+(function() {
+  const hash = window.location.hash.slice(1);
+  const ziel = hash ? document.getElementById(hash) : null;
+  if (ziel && ziel.classList.contains('seite')) {
+    zeigeSeite(hash);
+  } else {
+    const ersteSeite = document.querySelector('.seite');
+    if (ersteSeite) ersteSeite.classList.add('aktiv');
+  }
+})();
 </script>
 
 </body>
