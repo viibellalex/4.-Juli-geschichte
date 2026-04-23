@@ -9,16 +9,13 @@
 <style>
 
 :root {
-–hintergrund: #F5F1E8;
-–flaeche:     #EDE8DC;
-–rahmen:      #D5CFC0;
-–text:        #16140F;
-–grau:        #6E6555;
-–blau:        #1E4A82;
-–blau-hell:   #2D5FA0;
-–rot:         #8B2E20;
-–gold:        #B8952A;
-–hero-bg:     #0D1B2E;
+–hintergrund: #F7F4EE;
+–flaeche:     #EEEAE0;
+–rahmen:      #D8D2C4;
+–text:        #1A1814;
+–grau:        #7A7060;
+–blau:        #2D5A8E;
+–rot:         #8E3A2D;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,29 +27,26 @@ color: var(–text);
 overflow-x: hidden;
 }
 
-/* ===== NAVIGATION ===== */
 .navigation {
 position: fixed;
 top: 0; left: 0; right: 0;
 z-index: 100;
-background: rgba(245,241,232,0.97);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
+background: rgba(247,244,238,0.93);
+backdrop-filter: blur(14px);
 border-bottom: 1px solid var(–rahmen);
-height: 68px;
+height: 72px;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-gap: 3px;
-box-shadow: 0 1px 24px rgba(0,0,0,0.07);
+gap: 4px;
 }
 
 .logo {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 0.95rem;
-font-weight: 700;
-letter-spacing: 6px;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 5px;
 text-transform: uppercase;
 color: var(–text);
 text-decoration: none;
@@ -67,261 +61,212 @@ gap: 0;
 }
 
 .nav-links a {
-font-size: 0.63rem;
+font-size: 0.68rem;
 letter-spacing: 2px;
 text-transform: uppercase;
 color: var(–grau);
 text-decoration: none;
-padding: 0.2rem 0.75rem;
+padding: 0.25rem 0.85rem;
 border-bottom: 1.5px solid transparent;
 transition: color 0.2s, border-color 0.2s;
 display: block;
 }
 
-.nav-links a:hover,
-.nav-links a.aktiv-link {
+.nav-links a:hover {
 color: var(–blau);
 border-bottom-color: var(–blau);
 }
 
-/* ===== SEITENÜBERGÄNGE ===== */
 .seite {
 display: none;
 min-height: 100vh;
-padding-top: 68px;
+padding-top: 72px;
+animation: einblenden 0.5s ease both;
 }
 
-.seite.aktiv {
-display: block;
-animation: seitenEin 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
+.seite:first-of-type { display: block; }
+.seite:target { display: block; }
+.seite:target ~ .seite:first-of-type { display: none; }
 
-@keyframes seitenEin {
-from { opacity: 0; transform: translateY(22px); }
+@keyframes einblenden {
+from { opacity: 0; transform: translateY(14px); }
 to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== HERO / STARTBEREICH ===== */
 .startbereich {
-min-height: calc(100vh - 68px);
+min-height: calc(100vh - 72px);
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 text-align: center;
-padding: 5rem 2rem 6rem;
-background: var(–hero-bg);
-position: relative;
-overflow: hidden;
+padding: 4rem 2rem 5rem;
 }
-
-.startbereich::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image:
-radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.55) 0%, transparent 100%),
-radial-gradient(1.5px 1.5px at 40% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
-radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.65) 0%, transparent 100%),
-radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
-radial-gradient(1.5px 1.5px at 25% 60%, rgba(255,255,255,0.35) 0%, transparent 100%),
-radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
-radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
-radial-gradient(1px 1px at 10% 85%, rgba(255,255,255,0.45) 0%, transparent 100%),
-radial-gradient(1.5px 1.5px at 60% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
-radial-gradient(1px 1px at 35% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
-radial-gradient(1px 1px at 78% 55%, rgba(255,255,255,0.35) 0%, transparent 100%),
-radial-gradient(1px 1px at 48% 48%, rgba(255,255,255,0.25) 0%, transparent 100%);
-pointer-events: none;
-}
-
-.startbereich::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 0; right: 0;
-height: 220px;
-background: linear-gradient(to top, var(–hero-bg), transparent);
-pointer-events: none;
-}
-
-.startbereich > * { position: relative; z-index: 1; }
 
 .kleiner-text {
-font-size: 0.62rem;
-letter-spacing: 6px;
+font-size: 0.68rem;
+letter-spacing: 5px;
 text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 2rem;
-animation: seitenEin 0.6s 0.1s both;
-opacity: 0.9;
+color: var(–blau);
+margin-bottom: 1.8rem;
 }
 
 .haupttitel {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(4.5rem, 11vw, 9rem);
+font-size: clamp(3rem, 8vw, 6.5rem);
 font-weight: 300;
-line-height: 0.95;
-color: rgba(255,255,255,0.93);
-margin-bottom: 0.5rem;
-animation: seitenEin 0.7s 0.2s both;
+line-height: 1.05;
+color: var(–text);
+margin-bottom: 0.3rem;
 }
 
 .haupttitel em {
 font-style: italic;
-color: var(–gold);
+color: var(–blau);
 }
 
 .untertitel {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+font-size: clamp(1.2rem, 3vw, 2rem);
 font-style: italic;
-color: rgba(255,255,255,0.48);
-margin-bottom: 2.5rem;
-animation: seitenEin 0.7s 0.3s both;
+color: var(–grau);
+margin-bottom: 2rem;
 }
 
 .einleitung {
-max-width: 500px;
-font-size: 0.95rem;
-color: rgba(255,255,255,0.45);
-line-height: 1.95;
+max-width: 520px;
+font-size: 0.97rem;
+color: var(–grau);
+line-height: 1.85;
 font-weight: 300;
-margin-bottom: 3rem;
-animation: seitenEin 0.7s 0.4s both;
+margin-bottom: 2.5rem;
 }
 
 .info-punkte {
 display: flex;
 flex-wrap: wrap;
-gap: 0.65rem;
+gap: 0.7rem;
 justify-content: center;
-animation: seitenEin 0.7s 0.5s both;
 }
 
 .info-punkt {
-font-size: 0.62rem;
-letter-spacing: 2px;
+font-size: 0.68rem;
+letter-spacing: 1.5px;
 text-transform: uppercase;
-color: var(–gold);
-border: 1px solid rgba(184,149,42,0.35);
-padding: 0.4rem 1.1rem;
-background: rgba(184,149,42,0.08);
+color: var(–blau);
+border: 1px solid rgba(45,90,142,0.3);
+padding: 0.35rem 1rem;
+background: rgba(45,90,142,0.05);
 }
 
-/* ===== KAPITELKARTEN ===== */
 .karten-bereich {
-padding: 5rem 2rem 6rem;
-max-width: 1120px;
+padding: 4rem 2rem 6rem;
+max-width: 1100px;
 margin: 0 auto;
 }
 
 .bereich-label {
-font-size: 0.62rem;
-letter-spacing: 6px;
+font-size: 0.68rem;
+letter-spacing: 5px;
 text-transform: uppercase;
 color: var(–blau);
 text-align: center;
-margin-bottom: 0.5rem;
+margin-bottom: 0.6rem;
 }
 
 .bereich-titel {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(1.8rem, 4vw, 2.8rem);
+font-size: clamp(1.6rem, 4vw, 2.5rem);
 font-weight: 400;
 text-align: center;
-margin-bottom: 3rem;
+margin-bottom: 2.5rem;
 }
 
 .karten-raster {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 1px;
-background: var(–rahmen);
-border: 1px solid var(–rahmen);
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.2rem;
 }
 
 .karte {
 background: var(–hintergrund);
-padding: 2rem;
+border: 1px solid var(–rahmen);
+padding: 1.8rem;
 text-decoration: none;
 color: inherit;
 display: block;
 position: relative;
 overflow: hidden;
-transition: background 0.3s ease;
+transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s;
 }
 
-.karte::before {
+.karte::after {
 content: ‘’;
 position: absolute;
-top: 0; left: 0;
-width: 3px; height: 0;
+bottom: 0; left: 0; right: 0;
+height: 2px;
 background: var(–blau);
-transition: height 0.35s cubic-bezier(0.22,1,0.36,1);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.35s ease;
 }
 
-.karte:hover { background: var(–flaeche); }
-.karte:hover::before { height: 100%; }
+.karte:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); border-color: rgba(45,90,142,0.25); }
+.karte:hover::after { transform: scaleX(1); }
 
 .karte-nummer {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 3.5rem;
+font-size: 3rem;
 font-weight: 300;
-color: rgba(30,74,130,0.1);
+color: rgba(45,90,142,0.13);
 line-height: 1;
-margin-bottom: 0.3rem;
-transition: color 0.3s;
+margin-bottom: 0.4rem;
 }
-
-.karte:hover .karte-nummer { color: rgba(30,74,130,0.18); }
 
 .karte-titel {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.2rem;
+font-size: 1.25rem;
 font-weight: 600;
-margin-bottom: 0.6rem;
+margin-bottom: 0.5rem;
 }
 
 .karte-beschreibung {
-font-size: 0.84rem;
+font-size: 0.87rem;
 color: var(–grau);
-line-height: 1.7;
+line-height: 1.65;
 font-weight: 300;
 }
 
 .pfeil {
 position: absolute;
-top: 2rem; right: 2rem;
+top: 1.8rem; right: 1.8rem;
 color: var(–blau);
 opacity: 0;
-transform: translate(-6px, 2px);
+transform: translateX(-4px);
 transition: opacity 0.25s, transform 0.25s;
-font-size: 1.1rem;
 }
 
-.karte:hover .pfeil { opacity: 1; transform: translate(0, 0); }
+.karte:hover .pfeil { opacity: 1; transform: translateX(0); }
 
-/* ===== SEITENHEADER ===== */
 .seitenheader {
-padding: 5rem 2rem 3rem;
+padding: 4rem 2rem 2.5rem;
 text-align: center;
-background: linear-gradient(180deg, var(–flaeche) 0%, var(–hintergrund) 100%);
 border-bottom: 1px solid var(–rahmen);
 }
 
 .seitenheader .klein {
-font-size: 0.62rem;
-letter-spacing: 6px;
+font-size: 0.68rem;
+letter-spacing: 5px;
 text-transform: uppercase;
 color: var(–blau);
-margin-bottom: 1rem;
+margin-bottom: 0.8rem;
 }
 
 .seitenheader h1 {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(2.2rem, 5vw, 3.6rem);
+font-size: clamp(2rem, 5vw, 3.2rem);
 font-weight: 400;
-margin-bottom: 0.7rem;
+margin-bottom: 0.5rem;
 }
 
 .seitenheader .intro {
@@ -331,79 +276,57 @@ font-size: 1.1rem;
 color: var(–grau);
 max-width: 540px;
 margin: 0 auto;
-line-height: 1.75;
+line-height: 1.7;
 }
 
 .linie {
-width: 40px;
-height: 2px;
-background: linear-gradient(to right, var(–blau), var(–rot));
-margin: 1.5rem auto 0;
+width: 44px;
+height: 1.5px;
+background: var(–blau);
+margin: 1.2rem auto 0;
 }
 
-/* ===== INHALT ===== */
 .inhalt {
 max-width: 800px;
 margin: 0 auto;
-padding: 4rem 2rem 5rem;
+padding: 3.5rem 2rem 5rem;
 }
 
-.abschnitt { margin-bottom: 3.5rem; }
+.abschnitt { margin-bottom: 3rem; }
 
 .abschnitt h3 {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.65rem;
+font-size: 1.55rem;
 font-weight: 600;
-margin-bottom: 1rem;
-padding-bottom: 0.6rem;
+margin-bottom: 0.9rem;
+padding-bottom: 0.5rem;
 border-bottom: 1px solid var(–rahmen);
-position: relative;
-}
-
-.abschnitt h3::after {
-content: ‘’;
-position: absolute;
-bottom: -1px; left: 0;
-width: 40px; height: 2px;
-background: var(–blau);
 }
 
 .abschnitt p {
 font-size: 0.97rem;
-line-height: 1.95;
+line-height: 1.9;
 font-weight: 300;
 margin-bottom: 0.9rem;
 }
 
 .zitat {
-border-left: 3px solid var(–blau);
-padding: 1.2rem 1.8rem;
-margin: 2rem 0;
+border-left: 2.5px solid var(–blau);
+padding: 1rem 1.5rem;
+margin: 1.5rem 0;
 background: var(–flaeche);
-position: relative;
-}
-
-.zitat::before {
-content: ‘C’;
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 4rem;
-color: rgba(30,74,130,0.12);
-position: absolute;
-top: -0.5rem; left: 0.8rem;
-line-height: 1;
-pointer-events: none;
 }
 
 .zitat p {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.15rem;
+font-size: 1.1rem;
 font-style: italic;
-margin-bottom: 0.4rem !important;
+margin-bottom: 0.3rem !important;
 }
 
 .zitat .quelle-text {
-font-size: 0.7rem;
-letter-spacing: 1.5px;
+font-size: 0.72rem;
+letter-spacing: 1px;
 text-transform: uppercase;
 color: var(–blau);
 }
@@ -411,153 +334,108 @@ color: var(–blau);
 .fakten {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-gap: 1px;
+gap: 1rem;
 margin: 1.5rem 0;
-background: var(–rahmen);
-border: 1px solid var(–rahmen);
 }
 
 .fakt {
 background: var(–flaeche);
-padding: 1.5rem 1.2rem;
+border: 1px solid var(–rahmen);
+padding: 1.2rem;
 text-align: center;
-transition: background 0.2s;
+transition: transform 0.25s;
 }
 
-.fakt:hover { background: var(–hintergrund); }
+.fakt:hover { transform: translateY(-3px); }
 
 .fakt-zahl {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 2.2rem;
+font-size: 2rem;
 font-weight: 700;
 color: var(–blau);
 line-height: 1;
-margin-bottom: 0.4rem;
+margin-bottom: 0.3rem;
 }
 
 .fakt-text {
-font-size: 0.65rem;
-letter-spacing: 1.5px;
+font-size: 0.7rem;
+letter-spacing: 1px;
 text-transform: uppercase;
 color: var(–grau);
 }
 
-.liste { list-style: none; margin: 1.2rem 0; }
+.liste { list-style: none; margin: 1rem 0; }
 
 .liste li {
-padding: 0.65rem 0 0.65rem 1.4rem;
+padding: 0.55rem 0 0.55rem 1.2rem;
 position: relative;
 font-size: 0.94rem;
-line-height: 1.8;
+line-height: 1.75;
 font-weight: 300;
 border-bottom: 1px solid var(–rahmen);
-transition: padding-left 0.2s;
 }
 
-.liste li:hover { padding-left: 1.8rem; }
 .liste li::before { content: ‘—’; position: absolute; left: 0; color: var(–blau); }
 
 .zwei-spalten {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 1px;
+gap: 1.2rem;
 margin: 1.5rem 0;
-background: var(–rahmen);
-border: 1px solid var(–rahmen);
 }
 
 @media (max-width: 580px) { .zwei-spalten { grid-template-columns: 1fr; } }
 
-.spalte { background: var(–flaeche); padding: 1.5rem; }
+.spalte { background: var(–flaeche); border: 1px solid var(–rahmen); padding: 1.4rem; }
 
 .spalte h4 {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.1rem;
+font-size: 1.05rem;
 font-weight: 600;
-margin-bottom: 0.7rem;
+margin-bottom: 0.6rem;
 }
 
-.spalte p { font-size: 0.88rem; color: var(–grau); line-height: 1.75; font-weight: 300; }
+.spalte p { font-size: 0.88rem; color: var(–grau); line-height: 1.7; font-weight: 300; }
 
 .personen {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-gap: 1px;
+gap: 1rem;
 margin: 1.5rem 0;
-background: var(–rahmen);
-border: 1px solid var(–rahmen);
 }
 
-.person {
-background: var(–flaeche);
-padding: 1.5rem;
-text-align: center;
-transition: background 0.2s;
-}
-
-.person:hover { background: var(–hintergrund); }
+.person { background: var(–flaeche); border: 1px solid var(–rahmen); padding: 1.3rem; text-align: center; }
 
 .person-kreis {
-width: 54px; height: 54px;
+width: 52px; height: 52px;
 border-radius: 50%;
 background: linear-gradient(135deg, var(–blau), var(–rot));
 display: flex; align-items: center; justify-content: center;
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.1rem; font-weight: 700; color: white;
-margin: 0 auto 0.9rem;
-box-shadow: 0 4px 16px rgba(30,74,130,0.25);
+font-size: 1.15rem; font-weight: 700; color: white;
+margin: 0 auto 0.8rem;
 }
 
 .person-name { font-family: ‘Cormorant Garamond’, serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
-.person-beschreibung { font-size: 0.76rem; color: var(–grau); line-height: 1.55; font-weight: 300; }
+.person-beschreibung { font-size: 0.78rem; color: var(–grau); line-height: 1.5; font-weight: 300; }
 
-/* Zeitstrahl */
-.zeitstrahl { padding: 0.5rem 0 0.5rem 1rem; position: relative; }
-
-.zeitstrahl::before {
-content: ‘’;
-position: absolute;
-left: 1.85rem; top: 0; bottom: 0;
-width: 1px;
-background: linear-gradient(to bottom, var(–blau), rgba(30,74,130,0.1));
-}
+.zeitstrahl { padding: 0.5rem 0; }
 
 .zeiteintrag {
 display: flex;
 gap: 1.5rem;
-padding: 1rem 0;
+padding: 0.9rem 0;
+border-bottom: 1px solid var(–rahmen);
 align-items: flex-start;
-position: relative;
 }
 
-.zeiteintrag::before {
-content: ‘’;
-position: absolute;
-left: 0.7rem; top: 1.35rem;
-width: 11px; height: 11px;
-border-radius: 50%;
-background: var(–blau);
-border: 2px solid var(–hintergrund);
-box-shadow: 0 0 0 1px var(–blau);
-z-index: 1;
-}
+.jahr { font-family: ‘Cormorant Garamond’, serif; font-size: 1.25rem; font-weight: 700; color: var(–blau); min-width: 55px; }
+.jahres-text { font-size: 0.92rem; line-height: 1.75; font-weight: 300; padding-top: 2px; }
 
-.jahr {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.1rem;
-font-weight: 700;
-color: var(–blau);
-min-width: 60px;
-padding-top: 2px;
-}
-
-.jahres-text { font-size: 0.92rem; line-height: 1.8; font-weight: 300; padding-top: 2px; }
-
-/* Navigation zwischen Seiten */
 .seiten-nav {
 max-width: 800px;
 margin: 0 auto;
-padding: 2.5rem 2rem;
+padding: 2rem;
 border-top: 1px solid var(–rahmen);
 display: flex;
 justify-content: space-between;
@@ -569,39 +447,30 @@ gap: 1rem;
 display: inline-block;
 border: 1px solid var(–rahmen);
 color: var(–grau);
-padding: 0.6rem 1.5rem;
+padding: 0.55rem 1.3rem;
 font-family: ‘DM Sans’, sans-serif;
-font-size: 0.65rem;
-letter-spacing: 2.5px;
+font-size: 0.68rem;
+letter-spacing: 2px;
 text-transform: uppercase;
 text-decoration: none;
-transition: color 0.2s, border-color 0.2s, background 0.2s;
+transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .nav-button:hover { background: var(–blau); border-color: var(–blau); color: white; }
 
-/* Quellen */
 .quellen-liste { list-style: none; }
 
 .quelle-eintrag {
 display: flex;
-gap: 1.5rem;
-padding: 1.6rem 0;
+gap: 1.4rem;
+padding: 1.4rem 0;
 border-bottom: 1px solid var(–rahmen);
 align-items: flex-start;
 }
 
-.quelle-nummer {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.8rem;
-font-weight: 300;
-color: rgba(30,74,130,0.18);
-min-width: 30px;
-line-height: 1;
-}
-
-.quelle-inhalt h4 { font-family: ‘Cormorant Garamond’, serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
-.quelle-inhalt p { font-size: 0.85rem; color: var(–grau); line-height: 1.65; margin-bottom: 0.4rem; }
+.quelle-nummer { font-family: ‘Cormorant Garamond’, serif; font-size: 1.5rem; font-weight: 300; color: rgba(45,90,142,0.2); min-width: 30px; line-height: 1; }
+.quelle-inhalt h4 { font-family: ‘Cormorant Garamond’, serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+.quelle-inhalt p { font-size: 0.85rem; color: var(–grau); line-height: 1.6; margin-bottom: 0.35rem; }
 .quelle-link { font-size: 0.74rem; color: var(–blau); text-decoration: none; word-break: break-all; }
 .quelle-link:hover { text-decoration: underline; }
 
@@ -616,12 +485,12 @@ padding: 3rem 2rem 5rem;
 display: flex;
 align-items: center;
 gap: 1rem;
-margin-bottom: 3rem;
+margin-bottom: 2.5rem;
 }
 
 .fortschritt-balken {
 flex: 1;
-height: 2px;
+height: 3px;
 background: var(–rahmen);
 position: relative;
 overflow: hidden;
@@ -629,13 +498,13 @@ overflow: hidden;
 
 .fortschritt-fill {
 height: 100%;
-background: linear-gradient(to right, var(–blau), var(–blau-hell));
-transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+background: var(–blau);
+transition: width 0.5s ease;
 width: 0%;
 }
 
 .fortschritt-text {
-font-size: 0.68rem;
+font-size: 0.72rem;
 letter-spacing: 2px;
 text-transform: uppercase;
 color: var(–grau);
@@ -644,45 +513,44 @@ white-space: nowrap;
 
 .quiz-frage-block {
 display: none;
-animation: seitenEin 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+animation: einblenden 0.4s ease both;
 }
 
 .quiz-frage-block.aktiv { display: block; }
 
 .frage-nummer {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 0.75rem;
+font-size: 0.8rem;
 font-weight: 600;
 letter-spacing: 4px;
 text-transform: uppercase;
 color: var(–blau);
-margin-bottom: 1rem;
-opacity: 0.7;
+margin-bottom: 0.8rem;
 }
 
 .frage-text {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(1.4rem, 3vw, 1.85rem);
+font-size: clamp(1.3rem, 3vw, 1.75rem);
 font-weight: 400;
 line-height: 1.4;
-margin-bottom: 2.2rem;
+margin-bottom: 2rem;
 color: var(–text);
 }
 
 .antwort-liste {
 display: flex;
 flex-direction: column;
-gap: 0.65rem;
+gap: 0.7rem;
 margin-bottom: 2rem;
 }
 
 .antwort-btn {
 background: var(–hintergrund);
 border: 1px solid var(–rahmen);
-padding: 1.05rem 1.4rem;
+padding: 1rem 1.4rem;
 text-align: left;
 font-family: ‘DM Sans’, sans-serif;
-font-size: 0.93rem;
+font-size: 0.95rem;
 font-weight: 300;
 color: var(–text);
 cursor: pointer;
@@ -696,7 +564,7 @@ line-height: 1.5;
 .antwort-btn:hover:not(:disabled) {
 background: var(–flaeche);
 border-color: var(–blau);
-transform: translateX(5px);
+transform: translateX(4px);
 }
 
 .antwort-btn .buchstabe {
@@ -705,26 +573,25 @@ font-size: 1.1rem;
 font-weight: 700;
 color: var(–blau);
 min-width: 22px;
-opacity: 0.45;
-flex-shrink: 0;
+opacity: 0.5;
 }
 
 .antwort-btn.richtig {
-background: rgba(30, 120, 55, 0.07);
+background: rgba(45, 142, 60, 0.08);
 border-color: #2D8E3C;
-color: #1a5022;
+color: #1a5c22;
 }
 .antwort-btn.richtig .buchstabe { color: #2D8E3C; opacity: 1; }
 
 .antwort-btn.falsch {
-background: rgba(139, 46, 32, 0.07);
+background: rgba(142, 58, 45, 0.08);
 border-color: var(–rot);
-color: #5c1a12;
+color: #5c1a1a;
 }
 .antwort-btn.falsch .buchstabe { color: var(–rot); opacity: 1; }
 
 .antwort-btn.korrekt-markiert {
-background: rgba(30, 120, 55, 0.04);
+background: rgba(45, 142, 60, 0.05);
 border-color: #2D8E3C;
 border-style: dashed;
 }
@@ -732,85 +599,84 @@ border-style: dashed;
 .erklaerung {
 display: none;
 background: var(–flaeche);
-border-left: 3px solid var(–blau);
-padding: 1.1rem 1.6rem;
+border-left: 2.5px solid var(–blau);
+padding: 1rem 1.5rem;
 margin-bottom: 2rem;
 font-size: 0.9rem;
-line-height: 1.8;
+line-height: 1.75;
 color: var(–grau);
 font-weight: 300;
-animation: seitenEin 0.35s ease both;
+animation: einblenden 0.3s ease both;
 }
 
 .erklaerung.sichtbar { display: block; }
+
 .erklaerung strong { color: var(–text); font-weight: 500; }
 
 .weiter-btn {
 background: var(–blau);
-border: none;
+border: 1px solid var(–blau);
 color: white;
-padding: 0.8rem 2.2rem;
+padding: 0.75rem 2rem;
 font-family: ‘DM Sans’, sans-serif;
-font-size: 0.72rem;
-letter-spacing: 3px;
+font-size: 0.75rem;
+letter-spacing: 2.5px;
 text-transform: uppercase;
 cursor: pointer;
 transition: background 0.2s, transform 0.15s;
 display: none;
 }
 
-.weiter-btn:hover { background: #132f55; transform: translateY(-2px); }
+.weiter-btn:hover { background: #1e3f66; transform: translateY(-1px); }
 .weiter-btn.sichtbar { display: inline-block; }
 
 /* Ergebnis */
 .quiz-ergebnis {
 display: none;
 text-align: center;
-padding: 2rem 0;
-animation: seitenEin 0.5s ease both;
+animation: einblenden 0.5s ease both;
 }
 
 .quiz-ergebnis.sichtbar { display: block; }
 
 .ergebnis-kreis {
-width: 130px; height: 130px;
+width: 120px; height: 120px;
 border-radius: 50%;
-background: linear-gradient(135deg, var(–blau), #132f55);
+background: linear-gradient(135deg, var(–blau), #1e3f66);
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-margin: 0 auto 2.5rem;
-box-shadow: 0 8px 40px rgba(30,74,130,0.35);
+margin: 0 auto 2rem;
 }
 
 .ergebnis-zahl {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 3.2rem;
+font-size: 2.8rem;
 font-weight: 700;
 color: white;
 line-height: 1;
 }
 
 .ergebnis-von {
-font-size: 0.62rem;
-letter-spacing: 2.5px;
+font-size: 0.65rem;
+letter-spacing: 2px;
 text-transform: uppercase;
-color: rgba(255,255,255,0.6);
+color: rgba(255,255,255,0.7);
 }
 
 .ergebnis-titel {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 2.2rem;
+font-size: 2rem;
 font-weight: 400;
-margin-bottom: 0.7rem;
+margin-bottom: 0.6rem;
 }
 
 .ergebnis-beschreibung {
 font-size: 0.95rem;
 color: var(–grau);
 font-weight: 300;
-line-height: 1.85;
+line-height: 1.8;
 max-width: 440px;
 margin: 0 auto 2.5rem;
 }
@@ -825,78 +691,60 @@ flex-wrap: wrap;
 .ergebnis-detail {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
-gap: 1px;
-margin: 2.5rem 0;
+gap: 1rem;
+margin: 2rem 0;
 text-align: center;
-background: var(–rahmen);
-border: 1px solid var(–rahmen);
 }
 
 .detail-box {
 background: var(–flaeche);
-padding: 1.4rem;
+border: 1px solid var(–rahmen);
+padding: 1.2rem;
 }
 
 .detail-zahl {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 2.2rem;
+font-size: 2rem;
 font-weight: 700;
 line-height: 1;
 margin-bottom: 0.3rem;
 }
 
 .detail-label {
-font-size: 0.64rem;
-letter-spacing: 2px;
+font-size: 0.68rem;
+letter-spacing: 1.5px;
 text-transform: uppercase;
 color: var(–grau);
 }
 
-/* Quiz Banner */
 .quiz-banner {
-background: var(–hero-bg);
-padding: 4rem 2rem;
+background: linear-gradient(135deg, var(–blau), #1e3f66);
+padding: 3rem 2rem;
 text-align: center;
-position: relative;
-overflow: hidden;
+margin-bottom: 0;
 }
-
-.quiz-banner::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image:
-radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
-radial-gradient(1px 1px at 65% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
-radial-gradient(1px 1px at 80% 65%, rgba(255,255,255,0.35) 0%, transparent 100%),
-radial-gradient(1.5px 1.5px at 45% 75%, rgba(255,255,255,0.3) 0%, transparent 100%);
-pointer-events: none;
-}
-
-.quiz-banner > * { position: relative; z-index: 1; }
 
 .quiz-banner-titel {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(2rem, 5vw, 3.2rem);
+font-size: clamp(1.8rem, 4vw, 2.8rem);
 font-weight: 400;
 color: white;
 margin-bottom: 0.5rem;
 }
 
 .quiz-banner-sub {
-font-size: 0.75rem;
-letter-spacing: 4px;
+font-size: 0.82rem;
+letter-spacing: 3px;
 text-transform: uppercase;
-color: var(–gold);
-opacity: 0.8;
-margin-bottom: 2.5rem;
+color: rgba(255,255,255,0.65);
+margin-bottom: 2rem;
 }
 
 .quiz-start-btn {
 background: white;
 border: none;
 color: var(–blau);
-padding: 1rem 3rem;
+padding: 0.9rem 2.5rem;
 font-family: ‘DM Sans’, sans-serif;
 font-size: 0.78rem;
 font-weight: 500;
@@ -906,26 +754,26 @@ cursor: pointer;
 transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.quiz-start-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.quiz-start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 
 .quiz-intro { display: block; }
 .quiz-fragen { display: none; }
 
 /* PDF-Button */
 .pdf-btn {
-background: #132f55;
+background: #1a3a5c;
 border: none;
 color: white;
-padding: 0.8rem 2.2rem;
+padding: 0.75rem 2rem;
 font-family: ‘DM Sans’, sans-serif;
-font-size: 0.72rem;
+font-size: 0.75rem;
 font-weight: 500;
-letter-spacing: 3px;
+letter-spacing: 2.5px;
 text-transform: uppercase;
 cursor: pointer;
 transition: background 0.2s, transform 0.15s;
 }
-.pdf-btn:hover { background: #0c1e38; transform: translateY(-2px); }
+.pdf-btn:hover { background: #0f2338; transform: translateY(-1px); }
 
 /* Druck-Styles */
 @media print {
@@ -941,7 +789,7 @@ padding: 50px;
 }
 
 .pdf-kopf {
-border-bottom: 2px solid #1E4A82;
+border-bottom: 2px solid #2D5A8E;
 padding-bottom: 20px;
 margin-bottom: 30px;
 }
@@ -949,7 +797,7 @@ margin-bottom: 30px;
 font-size: 10px;
 letter-spacing: 4px;
 text-transform: uppercase;
-color: #1E4A82;
+color: #2D5A8E;
 margin-bottom: 6px;
 font-family: Arial, sans-serif;
 }
@@ -975,7 +823,7 @@ gap: 30px;
 .pdf-kreis {
 width: 90px; height: 90px;
 border-radius: 50%;
-background: #1E4A82;
+background: #2D5A8E;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -1000,7 +848,7 @@ text-align: center;
 .pdf-stat-zahl { font-size: 24px; font-weight: bold; font-family: Georgia, serif; }
 .pdf-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #7A7060; font-family: Arial, sans-serif; margin-top: 4px; }
 .pdf-fragen-liste { margin-top: 30px; }
-.pdf-fragen-liste h3 { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #1E4A82; font-family: Arial, sans-serif; margin-bottom: 15px; border-bottom: 1px solid #D8D2C4; padding-bottom: 8px; }
+.pdf-fragen-liste h3 { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #2D5A8E; font-family: Arial, sans-serif; margin-bottom: 15px; border-bottom: 1px solid #D8D2C4; padding-bottom: 8px; }
 .pdf-frage-zeile {
 display: flex;
 align-items: flex-start;
@@ -1010,12 +858,12 @@ border-bottom: 1px solid #eee;
 font-size: 13px;
 line-height: 1.5;
 }
-.pdf-frage-nr { font-weight: bold; color: #1E4A82; min-width: 24px; font-family: Arial, sans-serif; font-size: 11px; margin-top: 2px; }
+.pdf-frage-nr { font-weight: bold; color: #2D5A8E; min-width: 24px; font-family: Arial, sans-serif; font-size: 11px; margin-top: 2px; }
 .pdf-frage-info { flex: 1; }
 .pdf-frage-ftext { margin-bottom: 3px; }
 .pdf-frage-antwort { font-size: 11px; color: #7A7060; }
 .pdf-richtig { color: #2D8E3C; font-weight: bold; }
-.pdf-falsch { color: #8B2E20; font-weight: bold; }
+.pdf-falsch { color: #8E3A2D; font-weight: bold; }
 .pdf-fuss {
 margin-top: 35px;
 padding-top: 15px;
@@ -1422,8 +1270,8 @@ justify-content: space-between;
 
   <div class="quiz-wrapper">
 
+```
 <!-- Intro -->
-
 <div id="quiz-intro" class="quiz-intro">
   <div style="text-align:center; padding: 2rem 0 3rem;">
     <div class="bereich-label">10 Fragen · Multiple Choice</div>
@@ -1437,7 +1285,6 @@ justify-content: space-between;
 </div>
 
 <!-- Fragen -->
-
 <div id="quiz-fragen" class="quiz-fragen">
 
   <div class="quiz-fortschritt">
@@ -1446,7 +1293,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 1 -->
-
   <div class="quiz-frage-block" id="frage-0">
     <div class="frage-nummer">Frage 01 / 10</div>
     <div class="frage-text">In welchem Jahr wurde die amerikanische Unabhängigkeitserklärung offiziell angenommen?</div>
@@ -1463,7 +1309,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 2 -->
-
   <div class="quiz-frage-block" id="frage-1">
     <div class="frage-nummer">Frage 02 / 10</div>
     <div class="frage-text">Wer schrieb den Hauptteil der Unabhängigkeitserklärung?</div>
@@ -1480,7 +1325,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 3 -->
-
   <div class="quiz-frage-block" id="frage-2">
     <div class="frage-nummer">Frage 03 / 10</div>
     <div class="frage-text">Wie viele Kolonien trennten sich 1776 von Großbritannien?</div>
@@ -1497,7 +1341,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 4 -->
-
   <div class="quiz-frage-block" id="frage-3">
     <div class="frage-nummer">Frage 04 / 10</div>
     <div class="frage-text">Wann wurde der 4. Juli offiziell als nationaler Feiertag der USA anerkannt?</div>
@@ -1514,7 +1357,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 5 -->
-
   <div class="quiz-frage-block" id="frage-4">
     <div class="frage-nummer">Frage 05 / 10</div>
     <div class="frage-text">Was ist das wichtigste Symbol des 4. Juli in Amerika?</div>
@@ -1531,7 +1373,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 6 -->
-
   <div class="quiz-frage-block" id="frage-5">
     <div class="frage-nummer">Frage 06 / 10</div>
     <div class="frage-text">Welcher afroamerikanische Redner hielt 1852 die berühmte Rede „What to the Slave is the 4th of July?"</div>
@@ -1548,7 +1389,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 7 -->
-
   <div class="quiz-frage-block" id="frage-6">
     <div class="frage-nummer">Frage 07 / 10</div>
     <div class="frage-text">Wie viele Menschen unterschrieben die amerikanische Unabhängigkeitserklärung?</div>
@@ -1565,7 +1405,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 8 -->
-
   <div class="quiz-frage-block" id="frage-7">
     <div class="frage-nummer">Frage 08 / 10</div>
     <div class="frage-text">Welcher Prozentsatz der Amerikaner grillt am 4. Juli?</div>
@@ -1582,7 +1421,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 9 -->
-
   <div class="quiz-frage-block" id="frage-8">
     <div class="frage-nummer">Frage 09 / 10</div>
     <div class="frage-text">Welche der folgenden Gruppen sieht den 4. Juli aus einem kritischen Blickwinkel, weil die Unabhängigkeit für sie Verdrängung und Landverlust bedeutete?</div>
@@ -1599,7 +1437,6 @@ justify-content: space-between;
   </div>
 
   <!-- Frage 10 -->
-
   <div class="quiz-frage-block" id="frage-9">
     <div class="frage-nummer">Frage 10 / 10</div>
     <div class="frage-text">Was stellt der 4. Juli laut der Präsentation in der gesellschaftlichen Debatte dar?</div>
@@ -1618,7 +1455,6 @@ justify-content: space-between;
 </div>
 
 <!-- Ergebnis -->
-
 <div id="quiz-ergebnis" class="quiz-ergebnis">
   <div class="ergebnis-kreis">
     <div class="ergebnis-zahl" id="ergebnis-zahl">0</div>
@@ -1643,7 +1479,6 @@ justify-content: space-between;
   </div>
 
   <!-- Name eingeben für PDF -->
-
   <div style="margin: 1.5rem 0; text-align:center;">
     <label style="font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--grau); display:block; margin-bottom:0.5rem;">Dein Name für das PDF</label>
     <input type="text" id="name-eingabe" placeholder="Vorname Nachname" style="border:1px solid var(--rahmen); background:var(--flaeche); padding:0.6rem 1.2rem; font-family:'DM Sans',sans-serif; font-size:0.95rem; width:100%; max-width:300px; color:var(--text); outline:none;">
@@ -1655,14 +1490,15 @@ justify-content: space-between;
     <a href="#start" class="nav-button" style="display: inline-block; padding: 0.75rem 1.5rem;">← Zur Präsentation</a>
   </div>
 </div>
+```
 
-  </div><!-- end quiz-wrapper -->
+  </div>
 
   <div class="seiten-nav" style="max-width: 720px;">
     <a href="#quellen" class="nav-button">← Quellen</a>
     <a href="#start" class="nav-button">Zur Startseite →</a>
   </div>
-</div><!-- end #quiz .seite -->
+</div>
 
 <!-- PDF Druck-Wrapper (nur beim Drucken sichtbar) -->
 
@@ -1858,50 +1694,6 @@ function quizNeustart() {
   document.getElementById('quiz-fragen').style.display = 'block';
   zeigeFrageBlock(0);
 }
-</script>
-
-<script>
-function zeigeSeite(id) {
-  document.querySelectorAll('.seite').forEach(s => s.classList.remove('aktiv'));
-  const ziel = document.getElementById(id);
-  if (ziel) {
-    ziel.classList.add('aktiv');
-    window.scrollTo(0, 0);
-  }
-  // Aktiven Nav-Link hervorheben
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('aktiv-link', a.getAttribute('href') === '#' + id);
-  });
-}
-
-// Nav-Links abfangen
-document.addEventListener('click', function(e) {
-  const link = e.target.closest('a[href^="#"]');
-  if (!link) return;
-  const id = link.getAttribute('href').slice(1);
-  const ziel = document.getElementById(id);
-  if (ziel && ziel.classList.contains('seite')) {
-    e.preventDefault();
-    zeigeSeite(id);
-    history.pushState(null, '', '#' + id);
-  }
-});
-
-// Beim Laden: Hash auswerten oder erste Seite zeigen
-(function() {
-  const hash = window.location.hash.slice(1);
-  const ziel = hash ? document.getElementById(hash) : null;
-  if (ziel && ziel.classList.contains('seite')) {
-    zeigeSeite(hash);
-  } else {
-    const ersteSeite = document.querySelector('.seite');
-    if (ersteSeite) {
-      ersteSeite.classList.add('aktiv');
-      const ersterLink = document.querySelector('.nav-links a[href="#' + ersteSeite.id + '"]');
-      if (ersterLink) ersterLink.classList.add('aktiv-link');
-    }
-  }
-})();
 </script>
 
 </body>
