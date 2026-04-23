@@ -759,11 +759,144 @@ transition: transform 0.2s, box-shadow 0.2s;
 .quiz-intro { display: block; }
 .quiz-fragen { display: none; }
 
+/* Nav-Sperre während Quiz */
+.nav-gesperrt { pointer-events: none; opacity: 0.45; user-select: none; }
+
+.quiz-aktiv-banner {
+display: none;
+font-size: 0.62rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–rot);
+background: rgba(142,58,45,0.09);
+border: 1px solid rgba(142,58,45,0.25);
+padding: 0.18rem 0.75rem;
+margin-top: 2px;
+pointer-events: none;
+}
+.quiz-aktiv-banner.sichtbar { display: inline-block; }
+
+/* PDF-Button */
+.pdf-btn {
+background: #1a3a5c;
+border: none;
+color: white;
+padding: 0.75rem 2rem;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.75rem;
+font-weight: 500;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s;
+}
+.pdf-btn:hover { background: #0f2338; transform: translateY(-1px); }
+
+/* Druck-Styles */
+@media print {
+body > * { display: none !important; }
+#pdf-druck-wrapper { display: block !important; }
+}
+
+#pdf-druck-wrapper {
+display: none;
+font-family: Georgia, serif;
+color: #1A1814;
+padding: 50px;
+}
+
+.pdf-kopf {
+border-bottom: 2px solid #2D5A8E;
+padding-bottom: 20px;
+margin-bottom: 30px;
+}
+.pdf-kopf-klein {
+font-size: 10px;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: #2D5A8E;
+margin-bottom: 6px;
+font-family: Arial, sans-serif;
+}
+.pdf-kopf h1 {
+font-size: 28px;
+font-weight: normal;
+margin-bottom: 4px;
+}
+.pdf-kopf-sub {
+font-size: 13px;
+color: #7A7060;
+font-style: italic;
+}
+.pdf-ergebnis-box {
+background: #f0f4fa;
+border: 1px solid #b0c4de;
+padding: 25px;
+margin: 25px 0;
+display: flex;
+align-items: center;
+gap: 30px;
+}
+.pdf-kreis {
+width: 90px; height: 90px;
+border-radius: 50%;
+background: #2D5A8E;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.pdf-kreis-zahl { font-size: 32px; font-weight: bold; color: white; line-height: 1; font-family: Georgia, serif; }
+.pdf-kreis-von { font-size: 10px; color: rgba(255,255,255,0.75); font-family: Arial, sans-serif; }
+.pdf-ergebnis-text h2 { font-size: 20px; font-weight: normal; margin-bottom: 6px; }
+.pdf-ergebnis-text p { font-size: 13px; color: #5a5040; line-height: 1.7; }
+.pdf-stats {
+display: flex;
+gap: 20px;
+margin: 20px 0;
+}
+.pdf-stat {
+flex: 1;
+border: 1px solid #D8D2C4;
+padding: 14px;
+text-align: center;
+}
+.pdf-stat-zahl { font-size: 24px; font-weight: bold; font-family: Georgia, serif; }
+.pdf-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #7A7060; font-family: Arial, sans-serif; margin-top: 4px; }
+.pdf-fragen-liste { margin-top: 30px; }
+.pdf-fragen-liste h3 { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #2D5A8E; font-family: Arial, sans-serif; margin-bottom: 15px; border-bottom: 1px solid #D8D2C4; padding-bottom: 8px; }
+.pdf-frage-zeile {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+padding: 10px 0;
+border-bottom: 1px solid #eee;
+font-size: 13px;
+line-height: 1.5;
+}
+.pdf-frage-nr { font-weight: bold; color: #2D5A8E; min-width: 24px; font-family: Arial, sans-serif; font-size: 11px; margin-top: 2px; }
+.pdf-frage-info { flex: 1; }
+.pdf-frage-ftext { margin-bottom: 3px; }
+.pdf-frage-antwort { font-size: 11px; color: #7A7060; }
+.pdf-richtig { color: #2D8E3C; font-weight: bold; }
+.pdf-falsch { color: #8E3A2D; font-weight: bold; }
+.pdf-fuss {
+margin-top: 35px;
+padding-top: 15px;
+border-top: 1px solid #D8D2C4;
+font-size: 10px;
+color: #7A7060;
+font-family: Arial, sans-serif;
+display: flex;
+justify-content: space-between;
+}
+
 </style>
 </head>
 <body>
 
-<nav class="navigation">
+<nav class="navigation" id="haupt-nav">
   <a href="#start" class="logo">4. Juli 1776</a>
   <ul class="nav-links">
     <li><a href="#start">Start</a></li>
@@ -775,6 +908,7 @@ transition: transform 0.2s, box-shadow 0.2s;
     <li><a href="#quellen">Quellen</a></li>
     <li><a href="#quiz" style="color: var(--blau); font-weight: 500;">★ Quiz</a></li>
   </ul>
+  <span class="quiz-aktiv-banner" id="quiz-banner">⚠ Quiz läuft – Navigation gesperrt</span>
 </nav>
 
 <!-- ===== START ===== -->
@@ -1362,9 +1496,16 @@ transition: transform 0.2s, box-shadow 0.2s;
     </div>
   </div>
 
+  <!-- Name eingeben für PDF -->
+  <div style="margin: 1.5rem 0; text-align:center;">
+    <label style="font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--grau); display:block; margin-bottom:0.5rem;">Dein Name für das PDF</label>
+    <input type="text" id="name-eingabe" placeholder="Vorname Nachname" style="border:1px solid var(--rahmen); background:var(--flaeche); padding:0.6rem 1.2rem; font-family:'DM Sans',sans-serif; font-size:0.95rem; width:100%; max-width:300px; color:var(--text); outline:none;">
+  </div>
+
   <div class="ergebnis-buttons">
-    <button class="weiter-btn sichtbar" onclick="quizNeustart()" style="background: var(--flaeche); color: var(--text); border-color: var(--rahmen);">↺ Nochmal</button>
-    <a href="#start" class="nav-button" style="display: inline-block; padding: 0.75rem 1.5rem;">← Zur Präsentation</a>
+    <button class="weiter-btn sichtbar" onclick="quizNeustart()" style="background: var(--flaeche); color: var(--text); border:1px solid var(--rahmen);">↺ Nochmal</button>
+    <button class="pdf-btn" onclick="pdfErstellen()">↓ Ergebnis als PDF</button>
+    <a href="#start" class="nav-button" style="display: inline-block; padding: 0.75rem 1.5rem;" onclick="navFreigeben()">← Zur Präsentation</a>
   </div>
 </div>
 ```
@@ -1377,13 +1518,73 @@ transition: transform 0.2s, box-shadow 0.2s;
   </div>
 </div>
 
+<!-- PDF Druck-Wrapper (nur beim Drucken sichtbar) -->
+
+<div id="pdf-druck-wrapper">
+  <div class="pdf-kopf">
+    <div class="pdf-kopf-klein">Geschichtsprojekt · Klasse 12B · 2026</div>
+    <h1>4. Juli – Quiz-Ergebnis</h1>
+    <div class="pdf-kopf-sub" id="pdf-name-anzeige">Unabhängigkeitstag der USA</div>
+  </div>
+  <div class="pdf-ergebnis-box">
+    <div class="pdf-kreis">
+      <div class="pdf-kreis-zahl" id="pdf-punkte">0</div>
+      <div class="pdf-kreis-von">von 10</div>
+    </div>
+    <div class="pdf-ergebnis-text">
+      <h2 id="pdf-titel">Ergebnis</h2>
+      <p id="pdf-text"></p>
+    </div>
+  </div>
+  <div class="pdf-stats">
+    <div class="pdf-stat"><div class="pdf-stat-zahl" id="pdf-richtig" style="color:#2D8E3C">0</div><div class="pdf-stat-label">Richtig</div></div>
+    <div class="pdf-stat"><div class="pdf-stat-zahl" id="pdf-falsch" style="color:#8E3A2D">0</div><div class="pdf-stat-label">Falsch</div></div>
+    <div class="pdf-stat"><div class="pdf-stat-zahl" id="pdf-prozent" style="color:#2D5A8E">0%</div><div class="pdf-stat-label">Trefferquote</div></div>
+    <div class="pdf-stat"><div class="pdf-stat-zahl" style="color:#2D5A8E" id="pdf-datum">–</div><div class="pdf-stat-label">Datum</div></div>
+  </div>
+  <div class="pdf-fragen-liste">
+    <h3>Antworten im Überblick</h3>
+    <div id="pdf-fragen-inhalt"></div>
+  </div>
+  <div class="pdf-fuss">
+    <span>Projekt: Der 4. Juli – Unabhängigkeitstag der USA</span>
+    <span id="pdf-fuss-datum"></span>
+  </div>
+</div>
+
 <script>
 let punkte = 0;
 let aktuelleFrageIndex = 0;
+let antwortProtokoll = []; // speichert {frage, richtig} für jede Frage
+
+const fragenDaten = [
+  { frage: "In welchem Jahr wurde die amerikanische Unabhängigkeitserklärung offiziell angenommen?", richtigeAntwort: "1776" },
+  { frage: "Wer schrieb den Hauptteil der Unabhängigkeitserklärung?", richtigeAntwort: "Thomas Jefferson" },
+  { frage: "Wie viele Kolonien trennten sich 1776 von Großbritannien?", richtigeAntwort: "13" },
+  { frage: "Wann wurde der 4. Juli offiziell als nationaler Feiertag der USA anerkannt?", richtigeAntwort: "1870" },
+  { frage: "Was ist das wichtigste Symbol des 4. Juli in Amerika?", richtigeAntwort: "Feuerwerk" },
+  { frage: "Welcher afroamerikanische Redner hielt 1852 die berühmte Rede „What to the Slave is the 4th of July?"", richtigeAntwort: "Frederick Douglass" },
+  { frage: "Wie viele Menschen unterschrieben die amerikanische Unabhängigkeitserklärung?", richtigeAntwort: "56" },
+  { frage: "Welcher Prozentsatz der Amerikaner grillt am 4. Juli?", richtigeAntwort: "68 %" },
+  { frage: "Welche Gruppe sieht den 4. Juli kritisch, weil die Unabhängigkeit für sie Verdrängung bedeutete?", richtigeAntwort: "Indigene Völker (Native Americans)" },
+  { frage: "Was stellt der 4. Juli laut der Präsentation in der gesellschaftlichen Debatte dar?", richtigeAntwort: "Einen Spiegel für gesellschaftliche Debatten und Spannungen" }
+];
+
+function navSperren() {
+  document.getElementById('haupt-nav').classList.add('nav-gesperrt');
+  document.getElementById('quiz-banner').classList.add('sichtbar');
+}
+
+function navFreigeben() {
+  document.getElementById('haupt-nav').classList.remove('nav-gesperrt');
+  document.getElementById('quiz-banner').classList.remove('sichtbar');
+}
 
 function quizStarten() {
   document.getElementById('quiz-intro').style.display = 'none';
   document.getElementById('quiz-fragen').style.display = 'block';
+  antwortProtokoll = [];
+  navSperren();
   zeigeFrageBlock(0);
   aktualisiereFortschritt(0);
 }
@@ -1408,7 +1609,6 @@ function antwortWaehlen(btn, frageIndex, richtig) {
   const block = document.getElementById('frage-' + frageIndex);
   const buttons = block.querySelectorAll('.antwort-btn');
 
-  // Alle Buttons deaktivieren
   buttons.forEach(b => b.disabled = true);
 
   if (richtig) {
@@ -1416,20 +1616,19 @@ function antwortWaehlen(btn, frageIndex, richtig) {
     punkte++;
   } else {
     btn.classList.add('falsch');
-    // Korrekte Antwort markieren
     buttons.forEach(b => {
-      const onclick = b.getAttribute('onclick');
-      if (onclick && onclick.includes('true')) {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('true')) {
         b.classList.add('korrekt-markiert');
       }
     });
   }
 
-  // Erklärung anzeigen
+  // Protokoll speichern
+  antwortProtokoll[frageIndex] = richtig;
+
   const erklaerung = document.getElementById('erklaerung-' + frageIndex);
   if (erklaerung) erklaerung.classList.add('sichtbar');
 
-  // Weiter-Button anzeigen
   const weiterBtn = document.getElementById('weiter-' + frageIndex);
   if (weiterBtn) weiterBtn.classList.add('sichtbar');
 }
@@ -1448,9 +1647,7 @@ function ergebnisZeigen() {
   document.getElementById('detail-falsch').textContent = (10 - punkte);
   document.getElementById('detail-prozent').textContent = (punkte * 10) + '%';
 
-  let titel = '';
-  let text = '';
-
+  let titel = '', text = '';
   if (punkte <= 3) {
     titel = 'Weiter üben!';
     text = 'Nur ' + punkte + ' von 10 richtig – schau dir die Präsentation nochmal an. Die wichtigsten Fakten stecken in den einzelnen Kapiteln!';
@@ -1469,24 +1666,60 @@ function ergebnisZeigen() {
   document.getElementById('ergebnis-text').textContent = text;
 }
 
+function pdfErstellen() {
+  const name = document.getElementById('name-eingabe').value.trim() || 'Anonym';
+  const datum = new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+
+  // PDF-Felder befüllen
+  document.getElementById('pdf-name-anzeige').textContent = 'Name: ' + name + '  |  Klasse 12B';
+  document.getElementById('pdf-punkte').textContent = punkte;
+  document.getElementById('pdf-titel').textContent = document.getElementById('ergebnis-titel').textContent;
+  document.getElementById('pdf-text').textContent = document.getElementById('ergebnis-text').textContent;
+  document.getElementById('pdf-richtig').textContent = punkte;
+  document.getElementById('pdf-falsch').textContent = (10 - punkte);
+  document.getElementById('pdf-prozent').textContent = (punkte * 10) + '%';
+  document.getElementById('pdf-datum').textContent = datum.split(',')[0];
+  document.getElementById('pdf-fuss-datum').textContent = 'Erstellt am ' + datum;
+
+  // Fragen-Liste aufbauen
+  let html = '';
+  fragenDaten.forEach((f, i) => {
+    const war = antwortProtokoll[i];
+    const symbol = war ? '✓' : '✗';
+    const klasse = war ? 'pdf-richtig' : 'pdf-falsch';
+    html += `<div class="pdf-frage-zeile">
+      <div class="pdf-frage-nr">${i+1}.</div>
+      <div class="pdf-frage-info">
+        <div class="pdf-frage-ftext">${f.frage}</div>
+        <div class="pdf-frage-antwort"><span class="${klasse}">${symbol} ${war ? 'Richtig' : 'Falsch'}</span> – Korrekte Antwort: <em>${f.richtigeAntwort}</em></div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('pdf-fragen-inhalt').innerHTML = html;
+
+  // PDF-Wrapper einblenden und drucken
+  document.getElementById('pdf-druck-wrapper').style.display = 'block';
+  setTimeout(() => {
+    window.print();
+    document.getElementById('pdf-druck-wrapper').style.display = 'none';
+  }, 150);
+}
+
 function quizNeustart() {
   punkte = 0;
   aktuelleFrageIndex = 0;
+  antwortProtokoll = [];
 
-  // Alle Antwort-Buttons zurücksetzen
   document.querySelectorAll('.antwort-btn').forEach(btn => {
     btn.disabled = false;
     btn.classList.remove('richtig', 'falsch', 'korrekt-markiert');
   });
 
-  // Alle Erklärungen und Weiter-Buttons verstecken
   document.querySelectorAll('.erklaerung').forEach(e => e.classList.remove('sichtbar'));
   document.querySelectorAll('.weiter-btn').forEach(b => b.classList.remove('sichtbar'));
-
-  // Ergebnis ausblenden
   document.getElementById('quiz-ergebnis').classList.remove('sichtbar');
+  document.getElementById('name-eingabe').value = '';
 
-  // Wieder zu Fragen
   document.getElementById('quiz-fragen').style.display = 'block';
   zeigeFrageBlock(0);
 }
