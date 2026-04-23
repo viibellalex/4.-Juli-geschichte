@@ -759,23 +759,6 @@ transition: transform 0.2s, box-shadow 0.2s;
 .quiz-intro { display: block; }
 .quiz-fragen { display: none; }
 
-/* Nav-Sperre während Quiz */
-.nav-gesperrt { pointer-events: none; opacity: 0.45; user-select: none; }
-
-.quiz-aktiv-banner {
-display: none;
-font-size: 0.62rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–rot);
-background: rgba(142,58,45,0.09);
-border: 1px solid rgba(142,58,45,0.25);
-padding: 0.18rem 0.75rem;
-margin-top: 2px;
-pointer-events: none;
-}
-.quiz-aktiv-banner.sichtbar { display: inline-block; }
-
 /* PDF-Button */
 .pdf-btn {
 background: #1a3a5c;
@@ -908,7 +891,6 @@ justify-content: space-between;
     <li><a href="#quellen">Quellen</a></li>
     <li><a href="#quiz" style="color: var(--blau); font-weight: 500;">★ Quiz</a></li>
   </ul>
-  <span class="quiz-aktiv-banner" id="quiz-banner">⚠ Quiz läuft – Navigation gesperrt</span>
 </nav>
 
 <!-- ===== START ===== -->
@@ -1505,7 +1487,7 @@ justify-content: space-between;
   <div class="ergebnis-buttons">
     <button class="weiter-btn sichtbar" onclick="quizNeustart()" style="background: var(--flaeche); color: var(--text); border:1px solid var(--rahmen);">↺ Nochmal</button>
     <button class="pdf-btn" onclick="pdfErstellen()">↓ Ergebnis als PDF</button>
-    <a href="#start" class="nav-button" style="display: inline-block; padding: 0.75rem 1.5rem;" onclick="navFreigeben()">← Zur Präsentation</a>
+    <a href="#start" class="nav-button" style="display: inline-block; padding: 0.75rem 1.5rem;">← Zur Präsentation</a>
   </div>
 </div>
 ```
@@ -1570,21 +1552,10 @@ const fragenDaten = [
   { frage: "Was stellt der 4. Juli laut der Präsentation in der gesellschaftlichen Debatte dar?", richtigeAntwort: "Einen Spiegel für gesellschaftliche Debatten und Spannungen" }
 ];
 
-function navSperren() {
-  document.getElementById('haupt-nav').classList.add('nav-gesperrt');
-  document.getElementById('quiz-banner').classList.add('sichtbar');
-}
-
-function navFreigeben() {
-  document.getElementById('haupt-nav').classList.remove('nav-gesperrt');
-  document.getElementById('quiz-banner').classList.remove('sichtbar');
-}
-
 function quizStarten() {
   document.getElementById('quiz-intro').style.display = 'none';
   document.getElementById('quiz-fragen').style.display = 'block';
   antwortProtokoll = [];
-  navSperren();
   zeigeFrageBlock(0);
   aktualisiereFortschritt(0);
 }
