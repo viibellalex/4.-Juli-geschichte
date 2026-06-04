@@ -1039,6 +1039,56 @@ transition: transform 0.2s, box-shadow 0.2s;
 .quiz-intro { display: block; }
 .quiz-fragen { display: none; }
 
+/* ===== AUFKLAPPBARE ABSCHNITTE – nutzt die bestehenden Überschriften ===== */
+.mehr-thema > summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  outline: none;
+}
+.mehr-thema > summary::-webkit-details-marker { display: none; }
+.mehr-thema > summary h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.mehr-thema > summary h3::after {
+  content: '+';
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--blau);
+  opacity: 0;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, opacity 0.25s;
+}
+.mehr-thema > summary:hover h3::after,
+.mehr-thema[open] > summary h3::after { opacity: 0.55; }
+.mehr-thema[open] > summary h3::after { transform: rotate(45deg); }
+.mehr-thema[open] > summary h3 { color: var(--blau); }
+.mehr-inhalt {
+  animation: einblenden 0.35s ease both;
+  margin-bottom: 1.2rem;
+}
+.mehr-inhalt h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.4rem 0 0.5rem;
+}
+.mehr-inhalt h4:first-child { margin-top: 0.4rem; }
+.mehr-inhalt p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 0.8rem;
+}
+.mehr-inhalt strong { font-weight: 500; }
+.mehr-inhalt em { font-style: italic; color: var(--grau); }
+.mehr-inhalt .liste { margin: 0.7rem 0 1rem; }
+
 </style>
 </head>
 <body>
@@ -1141,15 +1191,47 @@ Eine Analyse des wichtigsten Nationalfeiertages der USA.
 </div>
 <div class="inhalt">
 <div class="abschnitt">
-<h3>Die Unabhängigkeitserklärung</h3>
+<details class="mehr-thema">
+<summary><h3>Die Unabhängigkeitserklärung</h3></summary>
+<div class="mehr-inhalt">
+<h4>Vorgeschichte – wie kam es überhaupt dazu?</h4>
+<p>Seit dem 17. und 18. Jahrhundert gründeten europäische Auswanderer – vor allem aus Großbritannien – entlang der Ostküste Nordamerikas insgesamt <strong>13 Kolonien</strong>. Sie gehörten zum britischen Empire: Sie lieferten Rohstoffe wie Tabak, Baumwolle und Holz nach Großbritannien und kauften dort verarbeitete Waren. Eigene Parlamente hatten sie zwar – im britischen Parlament in London durften sie aber nicht mitbestimmen.</p>
+<p>Nach dem teuren <strong>Siebenjährigen Krieg (1756–1763)</strong> war Großbritannien hoch verschuldet und besteuerte die Kolonien immer stärker. Daraus entstanden heftige Konflikte:</p>
+<ul class="liste">
+<li><strong>Stamp Act (1765):</strong> Steuer auf alle gedruckten Dokumente – löste Massenproteste aus.</li>
+<li><strong>Townshend Acts (1767):</strong> Zölle auf importierte Waren wie Glas, Papier und Tee.</li>
+<li><strong>Boston Tea Party (1773):</strong> Bostoner Bürger warfen aus Protest ganze Ladungen britischen Tees ins Meer.</li>
+</ul>
+<p>Der zentrale Slogan war <strong>„No taxation without representation"</strong> – keine Besteuerung ohne politische Vertretung. Im April 1775 fielen bei <strong>Lexington und Concord</strong> die ersten Schüsse: Der Amerikanische Unabhängigkeitskrieg hatte begonnen.</p>
+<h4>Was steht eigentlich in der Erklärung?</h4>
+<p>Die Erklärung hat zwei Teile. <strong>Erstens die philosophische Grundlage:</strong> Alle Menschen sind „gleich geschaffen" und haben unveräußerliche Rechte – <strong>Leben, Freiheit und das Streben nach Glück</strong>. Regierungen sollen diese Rechte sichern; tun sie das nicht, hat das Volk das Recht, sie zu ändern.</p>
+<p><strong>Zweitens die Anklage gegen König Georg III.:</strong> eine lange Liste konkreter Vorwürfe – unfaire Steuern, fehlende Repräsentation und militärische Unterdrückung.</p>
+<h4>Warum der 4. und nicht der 2. Juli?</h4>
+<p>Schon am <strong>2. Juli 1776</strong> stimmte der Zweite Kontinentalkongress in Philadelphia für die Trennung. Zwei Tage später, am <strong>4. Juli 1776</strong>, wurde der endgültige Text offiziell angenommen – dieses Datum der Veröffentlichung wurde später zum symbolischen „Geburtstag" der USA.</p>
+</div>
+</details>
 <p>Der 4. Juli ist der Nationalfeiertag der USA. An diesem Tag im Jahr 1776 wurde die Unabhängigkeitserklärung – auf Englisch „Declaration of Independence" – offiziell angenommen. Damit trennten sich die 13 amerikanischen Kolonien von Großbritannien und gründeten einen neuen, unabhängigen Staat.</p>
 <div class="zitat">
 <p>„Wir halten diese Wahrheiten für selbstverständlich: dass alle Menschen gleich geschaffen sind, dass sie von ihrem Schöpfer mit unveräußerlichen Rechten ausgestattet sind ..."</p>
 <span class="quelle-text">— Declaration of Independence, 4. Juli 1776</span>
 </div>
 </div>
+
 <div class="abschnitt">
-<h3>Die Gründerväter</h3>
+<details class="mehr-thema">
+<summary><h3>Die Gründerväter</h3></summary>
+<div class="mehr-inhalt">
+<h4>Thomas Jefferson (1743–1826)</h4>
+<p>Hauptverfasser der Erklärung. Anwalt und Plantagenbesitzer in Virginia, sehr gebildet (las Latein, Griechisch und Französisch), später der <strong>3. Präsident der USA</strong>. Sein Bild ist heute auf der 2-Dollar-Note und am Mount Rushmore zu sehen.</p>
+<p><strong>Der große Widerspruch:</strong> Jefferson schrieb „alle Menschen sind gleich" – besaß aber selbst Sklaven. Dieser Widerspruch wird bis heute kritisch diskutiert.</p>
+<h4>Benjamin Franklin (1706–1790)</h4>
+<p>Der wohl bekannteste Gründervater: Erfinder (Blitzableiter, Bifokalbrille), Verleger, Naturwissenschaftler und Diplomat. Während des Krieges verhandelte er erfolgreich mit <strong>Frankreich</strong>, das schließlich auf Seiten der Amerikaner in den Krieg eintrat – ein entscheidender Schritt für den Sieg.</p>
+<h4>John Adams (1735–1826)</h4>
+<p>Anwalt aus Massachusetts, später der <strong>2. Präsident der USA</strong>, hartnäckiger Verteidiger der Unabhängigkeit. Kurioses Detail: Adams und Jefferson starben beide am <strong>4. Juli 1826</strong> – exakt 50 Jahre nach der Unabhängigkeitserklärung.</p>
+<h4>Hochverrat – ein lebensgefährlicher Schritt</h4>
+<p>Die Unterschrift war <strong>Hochverrat</strong> gegen die britische Krone. Jeder der 56 Unterzeichner wusste: Bei einer Niederlage drohten Hinrichtung und der Verlust des gesamten Vermögens. Sie unterschrieben trotzdem – mit den Worten: <em>„Wir verpfänden einander unser Leben, unser Vermögen und unsere heilige Ehre."</em></p>
+</div>
+</details>
 <p>Die wichtigsten Personen hinter der Unabhängigkeitserklärung riskierten buchstäblich ihr Leben – denn mit ihrer Unterschrift begingen sie offiziell Hochverrat an Großbritannien.</p>
 <div class="personen">
 <div class="person"><div class="person-kreis">TJ</div><div class="person-name">Thomas Jefferson</div><div class="person-beschreibung">Schrieb den Hauptteil der Erklärung</div></div>
@@ -1157,7 +1239,7 @@ Eine Analyse des wichtigsten Nationalfeiertages der USA.
 <div class="person"><div class="person-kreis">JA</div><div class="person-name">John Adams</div><div class="person-beschreibung">Später 2. Präsident der USA</div></div>
 <div class="person"><div class="person-kreis">+53</div><div class="person-name">56 Unterzeichner</div><div class="person-beschreibung">Alle riskierten ihr Leben</div></div>
 </div>
-</div>
+
 <div class="abschnitt">
 <h3>Entwicklung der Tradition</h3>
 <div class="zeitstrahl">
